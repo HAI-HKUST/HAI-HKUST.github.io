@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="HKUST(GZ) Frontier AI Club — frontier research talks, the Feiyue handbook, and research collaboration.">
+  <meta name="theme-color" content="#041536">
+  <title>HKUST(GZ) Frontier AI Club</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-home">
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+<div data-site-header></div>
+<main>
+  <section class="hero" id="top">
+    <canvas id="networkCanvas" class="network-canvas" aria-hidden="true"></canvas>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-orb orb-one" data-parallax="-0.025"></div>
+    <div class="hero-orb orb-two" data-parallax="0.035"></div>
+    <div class="hero-inner">
+      <div class="hero-copy reveal reveal-left">
+        <div class="eyebrow"><span class="eyebrow-pulse"></span><span data-i18n="homeEyebrow"></span></div>
+        <h1><span data-i18n="homeTitle1"></span><span class="accent text-shimmer" data-i18n="homeTitleAccent"></span><span data-i18n="homeTitle2"></span></h1>
+        <p class="hero-lead" data-i18n="homeLead"></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary magnetic" href="#mission"><span data-i18n="explorePrograms"></span><span class="arrow">↗</span></a>
+          <a class="btn btn-ghost magnetic" href="collaboration.html"><span data-i18n="meetCommunity"></span><span class="arrow">→</span></a>
+        </div>
+        <div class="hero-facts" aria-label="Community overview">
+          <div><strong data-counter="3">0</strong><span data-i18n="heroFact1"></span></div>
+          <div><strong data-counter="6">0</strong><span data-i18n="heroFact2"></span></div>
+          <div><strong data-counter="4">0</strong><span data-i18n="heroFact3"></span></div>
+        </div>
+      </div>
+
+      <div class="orbit-stage reveal reveal-right" data-tilt data-tilt-max="4">
+        <div class="orbit-board" aria-hidden="true" data-parallax="0.02">
+          <div class="orbit-halo halo-one"></div>
+          <div class="orbit-halo halo-two"></div>
+          <div class="orbit-ring ring-one"></div>
+          <div class="orbit-ring ring-two"></div>
+          <div class="orbit-core">
+            <div class="core-radar"></div>
+            <div><span data-i18n="orbitCore"></span><small data-i18n="orbitCoreSub"></small></div>
+          </div>
+          <div class="orbit-node node-a"><strong><i class="node-dot"></i><span data-i18n="orbitTalks"></span></strong><span data-i18n="orbitTalksSub"></span></div>
+          <div class="orbit-node node-b"><strong><i class="node-dot"></i><span data-i18n="orbitGuide"></span></strong><span data-i18n="orbitGuideSub"></span></div>
+          <div class="orbit-node node-c"><strong><i class="node-dot"></i><span data-i18n="orbitCollab"></span></strong><span data-i18n="orbitCollabSub"></span></div>
+          <div class="data-spark spark-a"></div><div class="data-spark spark-b"></div><div class="data-spark spark-c"></div>
+        </div>
+        <div class="floating-note note-a"><span class="note-icon">✦</span><span data-i18n="floatNote1"></span></div>
+        <div class="floating-note note-b"><span class="note-icon">↗</span><span data-i18n="floatNote2"></span></div>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#mission" aria-label="Scroll to content"><span></span><small data-i18n="scrollExplore"></small></a>
+  </section>
+
+  <section class="topic-marquee" aria-label="AI topics">
+    <div class="marquee-track">
+      <span>Multimodal AI</span><i>✦</i><span>Embodied Intelligence</span><i>✦</i><span>World Models</span><i>✦</i><span>AI for Science</span><i>✦</i><span>Generative Models</span><i>✦</i><span>Trustworthy AI</span><i>✦</i>
+      <span>Multimodal AI</span><i>✦</i><span>Embodied Intelligence</span><i>✦</i><span>World Models</span><i>✦</i><span>AI for Science</span><i>✦</i><span>Generative Models</span><i>✦</i><span>Trustworthy AI</span><i>✦</i>
+    </div>
+  </section>
+
+  <section class="section" id="mission">
+    <div class="container">
+      <div class="section-heading reveal"><div class="kicker" data-i18n="missionKicker"></div><div><h2 data-i18n="missionTitle"></h2><p data-i18n="missionDesc"></p></div></div>
+      <div class="pillars stagger-group">
+        <article class="pillar-card reveal interactive-card" data-tilt>
+          <div class="card-glow"></div><div class="pillar-number">01</div>
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18V7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v7A2.5 2.5 0 0 1 17.5 17H9l-5 3Z"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <h3 data-i18n="p1Title"></h3><p data-i18n="p1Desc"></p><a class="text-link" href="talks.html"><span data-i18n="p1Link"></span><b>→</b></a>
+        </article>
+        <article class="pillar-card reveal interactive-card" data-tilt>
+          <div class="card-glow"></div><div class="pillar-number">02</div>
+          <div class="pillar-icon gold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4.5h10.5A2.5 2.5 0 0 1 18 7v12.5H7.5A2.5 2.5 0 0 1 5 17Z"/><path d="M18 8h1a1 1 0 0 1 1 1v10.5H8M8 9h7M8 13h5"/></svg></div>
+          <h3 data-i18n="p2Title"></h3><p data-i18n="p2Desc"></p><a class="text-link" href="handbook.html"><span data-i18n="p2Link"></span><b>→</b></a>
+        </article>
+        <article class="pillar-card reveal interactive-card" data-tilt>
+          <div class="card-glow"></div><div class="pillar-number">03</div>
+          <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M2.5 19c.6-4 2.1-6 4.5-6s3.9 2 4.5 6M12.5 19c.6-4 2.1-6 4.5-6s3.9 2 4.5 6M10 7h4"/></svg></div>
+          <h3 data-i18n="p3Title"></h3><p data-i18n="p3Desc"></p><a class="text-link" href="collaboration.html"><span data-i18n="p3Link"></span><b>→</b></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section stat-section">
+    <div class="container">
+      <div class="stat-panel reveal">
+        <div class="stat-intro"><div class="kicker" data-i18n="glanceKicker"></div><h2 data-i18n="glanceTitle"></h2><p data-i18n="glanceDesc"></p></div>
+        <div class="stat-grid">
+          <div class="stat-item"><strong data-counter="3">0</strong><span data-i18n="stat1"></span></div>
+          <div class="stat-item"><strong data-counter="4">0</strong><span data-i18n="stat2"></span></div>
+          <div class="stat-item"><strong data-counter="6">0</strong><span data-i18n="stat3"></span></div>
+          <div class="stat-item"><strong data-counter="12">0</strong><span data-i18n="stat4"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark-section constellation-section">
+    <div class="constellation" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="container">
+      <div class="section-heading reveal"><div class="kicker" data-i18n="systemKicker"></div><div><h2 data-i18n="systemTitle"></h2><p data-i18n="systemDesc"></p></div></div>
+      <div class="program-grid stagger-group">
+        <article class="program-card reveal interactive-card"><span class="program-arrow">↗</span><div class="program-meta" data-i18n="prog1Meta"></div><h3 data-i18n="prog1Title"></h3><p data-i18n="prog1Desc"></p><div class="tag-list"><span class="tag" data-i18n="tagKeynote"></span><span class="tag">Q&amp;A</span><span class="tag" data-i18n="tagStory"></span></div></article>
+        <article class="program-card reveal interactive-card"><span class="program-arrow">↗</span><div class="program-meta" data-i18n="prog2Meta"></div><h3 data-i18n="prog2Title"></h3><p data-i18n="prog2Desc"></p><div class="tag-list"><span class="tag" data-i18n="tagPaper"></span><span class="tag" data-i18n="tagWorkshop"></span></div></article>
+        <article class="program-card reveal interactive-card"><span class="program-arrow">↗</span><div class="program-meta" data-i18n="prog3Meta"></div><h3 data-i18n="prog3Title"></h3><p data-i18n="prog3Desc"></p><div class="tag-list"><span class="tag" data-i18n="tagApplications"></span><span class="tag" data-i18n="tagProjects"></span></div></article>
+        <article class="program-card reveal interactive-card"><span class="program-arrow">↗</span><div class="program-meta" data-i18n="prog4Meta"></div><h3 data-i18n="prog4Title"></h3><p data-i18n="prog4Desc"></p><div class="tag-list"><span class="tag">Idea Board</span><span class="tag">Sprint</span><span class="tag">Demo</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section roadmap-section">
+    <div class="container">
+      <div class="section-heading reveal"><div class="kicker" data-i18n="roadmapKicker"></div><div><h2 data-i18n="roadmapTitle"></h2><p data-i18n="roadmapDesc"></p></div></div>
+      <div class="roadmap reveal">
+        <div class="roadmap-line"><span></span></div>
+        <article class="roadmap-step"><b>Q1</b><div class="roadmap-dot"></div><h3 data-i18n="road1Title"></h3><p data-i18n="road1Desc"></p></article>
+        <article class="roadmap-step"><b>Q2</b><div class="roadmap-dot"></div><h3 data-i18n="road2Title"></h3><p data-i18n="road2Desc"></p></article>
+        <article class="roadmap-step"><b>Q3</b><div class="roadmap-dot"></div><h3 data-i18n="road3Title"></h3><p data-i18n="road3Desc"></p></article>
+        <article class="roadmap-step"><b>Q4</b><div class="roadmap-dot"></div><h3 data-i18n="road4Title"></h3><p data-i18n="road4Desc"></p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section audience-section">
+    <div class="container">
+      <div class="section-heading reveal"><div class="kicker" data-i18n="audienceKicker"></div><div><h2 data-i18n="audienceTitle"></h2><p data-i18n="audienceDesc"></p></div></div>
+      <div class="audience-grid stagger-group">
+        <article class="audience-card reveal"><span>01</span><h3 data-i18n="aud1Title"></h3><p data-i18n="aud1Desc"></p><a href="talks.html" data-i18n="aud1Link"></a></article>
+        <article class="audience-card reveal"><span>02</span><h3 data-i18n="aud2Title"></h3><p data-i18n="aud2Desc"></p><a href="handbook.html" data-i18n="aud2Link"></a></article>
+        <article class="audience-card reveal"><span>03</span><h3 data-i18n="aud3Title"></h3><p data-i18n="aud3Desc"></p><a href="collaboration.html" data-i18n="aud3Link"></a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container narrow-container">
+      <div class="section-heading reveal"><div class="kicker" data-i18n="faqKicker"></div><div><h2 data-i18n="faqTitle"></h2><p data-i18n="faqDesc"></p></div></div>
+      <div class="accordion reveal">
+        <article class="accordion-item"><button type="button"><span data-i18n="faq1Q"></span><i></i></button><div class="accordion-panel"><p data-i18n="faq1A"></p></div></article>
+        <article class="accordion-item"><button type="button"><span data-i18n="faq2Q"></span><i></i></button><div class="accordion-panel"><p data-i18n="faq2A"></p></div></article>
+        <article class="accordion-item"><button type="button"><span data-i18n="faq3Q"></span><i></i></button><div class="accordion-panel"><p data-i18n="faq3A"></p></div></article>
+        <article class="accordion-item"><button type="button"><span data-i18n="faq4Q"></span><i></i></button><div class="accordion-panel"><p data-i18n="faq4A"></p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band"><div class="cta-noise" aria-hidden="true"></div><div class="container cta-band-inner"><div><div class="kicker light" data-i18n="ctaKicker"></div><h2 data-i18n="ctaTitle"></h2><p data-i18n="ctaDesc"></p></div><div class="cta-actions"><a class="btn btn-primary magnetic" href="#"><span data-i18n="ctaJoin"></span><span>↗</span></a><a class="btn btn-ghost magnetic" href="collaboration.html"><span data-i18n="ctaPropose"></span></a></div></div></section>
+</main>
+<button class="back-to-top" aria-label="Back to top">↑</button>
+<div data-site-footer></div>
+<script src="site.js"></script>
+</body>
+</html>
