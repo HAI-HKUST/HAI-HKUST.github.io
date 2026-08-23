@@ -6,6 +6,7 @@ const translations = {
     "navTalks": "学术分享",
     "navHandbook": "飞跃手册",
     "navCollab": "科研合作",
+    "navLinks": "实用链接",
     "navTeam": "组织者",
     "footerIntro": "连接研究者、经验与合作机会，共同建设开放、扎实、有温度的前沿人工智能社团",
     "footerExplore": "探索",
@@ -104,10 +105,10 @@ const translations = {
     "upcomingTitle": "近期活动",
     "upcoming1Date": "待公布",
     "upcoming1Title": "香港科技大学前沿人工智能社团启动分享",
-    "upcoming1Desc": "介绍社团愿景、全年计划与参与方式，并收集第一批主题和项目提案",
-    "upcoming2Date": "征集中",
+    "upcoming1Desc": "介绍社团愿景、全年计划与参与方式，并展示首批主题方向",
+    "upcoming2Date": "待公布",
     "upcoming2Title": "首期研究者分享",
-    "upcoming2Desc": "讲者与主题正在征集，可推荐校内外研究者或自荐分享",
+    "upcoming2Desc": "首期分享将邀请一位研究者，围绕其近期工作进行深度介绍与讨论",
     "handbookEyebrow": "AI FEIYUE HANDBOOK",
     "handbookTitle": "让经验成为后来者可检索、可比较、可复用的公共资源",
     "handbookLead": "手册不仅记录“去了哪里”，更希望解释每个关键选择背后的信息、准备过程、项目积累与反思",
@@ -145,7 +146,7 @@ const translations = {
     "cat5Focus": "如何连接研究能力与岗位？",
     "cat5Content": "岗位选择、简历、面试、实习项目与职业路径",
     "statusPlanning": "规划中",
-    "statusOpen": "开放投稿",
+    "statusOpen": "持续更新",
     "contributeKicker": "CONTRIBUTE",
     "contributeTitle": "贡献一篇经验，只需要把真实过程讲清楚",
     "contributeDesc": "维护者可负责结构整理、双语排版与网页发布贡献者可以使用 Markdown、Word、PDF 或普通文本提交",
@@ -189,9 +190,9 @@ const translations = {
     "pr2Desc": "用短周期、可交付任务和透明进度，避免无限期的模糊承诺",
     "pr3Title": "开放反馈",
     "pr3Desc": "鼓励质疑方法而不否定个人，允许失败项目形成有价值的公开复盘",
-    "boardKicker": "PROJECT BOARD",
-    "boardTitle": "项目栏预留",
-    "boardDesc": "正式运行后，可在这里展示正在招募的项目、阅读组与复现任务",
+    "boardKicker": "RECRUITMENT",
+    "boardTitle": "科研合作招募",
+    "boardDesc": "本栏目用于发布科研合作相关的招募信息，正式启动后将在此持续更新项目、阅读组与复现等方向的招募",
     "teamEyebrow": "ORGANIZERS",
     "teamTitle": "组织者与共建者",
     "teamLead": "人员信息已按你的要求留空你可以直接编辑 organizers.html 中的占位卡片，或在 site.js 旁新增成员数据",
@@ -284,7 +285,7 @@ const translations = {
     "ed3Desc": "提供预读、讲义、参考资料或讨论问题，让活动成为后续学习的起点",
     "upcomingDesc": "以下为社团启动阶段的活动占位确定讲者、时间与地点后，可替换为真实信息",
     "eventPlaceholder": "待公布",
-    "eventRecruiting": "征集中",
+    "eventRecruiting": "待公布",
     "eventTypeLaunch": "社团启动会",
     "eventTypeTalk": "研究者分享",
     "eventOpen": "面向全校开放",
@@ -297,7 +298,7 @@ const translations = {
     "projectBullet1": "问题定义与研究动机",
     "projectBullet2": "方法、实验与工程过程",
     "projectBullet3": "失败经验与可复用资产",
-    "categoriesDesc": "首版先覆盖最常见的问题，再通过持续投稿逐步扩展每个板块都可以由多位贡献者提供不同视角",
+    "categoriesDesc": "首版先覆盖最常见的问题，之后逐步扩展；每个板块都可以由多位贡献者提供不同视角",
     "templateKicker": "ARTICLE TEMPLATE",
     "templateTitle": "统一结构，不统一答案",
     "templateDesc": "模板帮助贡献者将真实过程表述清楚，也便于读者比较不同路径；个人结论仍应注明背景与适用边界",
@@ -312,7 +313,7 @@ const translations = {
     "privacyTitle": "隐私与事实优先",
     "privacyDesc": "涉及个人信息、导师沟通、录取结果或项目细节时，发布前应获得授权或进行必要匿名化",
     "submitStory": "提交经验",
-    "viewProjectBoard": "查看项目栏",
+    "viewProjectBoard": "查看招募",
     "startProposal": "发起提案",
     "bestFor": "适合",
     "ideaBest": "快速寻找反馈",
@@ -324,7 +325,7 @@ const translations = {
     "filterReading": "阅读组",
     "filterRepro": "复现任务",
     "filterProject": "早期项目",
-    "boardTemplateNote": "以下为展示模板，不代表真实招募",
+    "boardTemplateNote": "以下为展示模板，供结构参考",
     "templateSlot": "模板位",
     "boardCard1Title": "多模态基础模型阅读组",
     "boardCard1Desc": "示例：围绕一个明确主题安排 4 周阅读，每周由不同成员主讲并维护共享笔记",
@@ -334,7 +335,7 @@ const translations = {
     "boardCard2Goal": "跑通最小基线并记录问题",
     "boardCard3Title": "AI for Science 数据探索",
     "boardCard3Desc": "示例：围绕一个公开数据集进行可行性分析，明确任务定义、指标与首个基线",
-    "boardCard3Goal": "提交一页问题定义和数据报告",
+    "boardCard3Goal": "完成一页问题定义与数据报告",
     "twoWeekGoal": "两周目标",
     "projectCallTitle": "把你的真实项目放到这里",
     "projectCallDesc": "发布时建议说明问题、已有资源、需要的能力、预计投入，以及第一个两周目标",
@@ -353,16 +354,32 @@ const translations = {
     "role1Desc": "联系讲者、沟通主题、准备活动资料并主持现场交流",
     "role1Skills": "沟通 · 研究兴趣 · 活动策划",
     "role2Title": "手册编辑",
-    "role2Desc": "维护投稿模板、协助结构编辑、核对隐私并完成双语发布",
+    "role2Desc": "维护文章模板、协助结构编辑、核对隐私并完成双语发布",
     "role2Skills": "写作 · 编辑 · 信息整理",
     "role3Title": "项目与社团",
     "role3Desc": "维护 Idea Board、匹配成员、跟进短周期项目并组织阶段展示",
     "role3Skills": "项目管理 · 社团运营 · 协作",
     "role4Title": "设计与技术",
-    "role4Desc": "维护网站、视觉物料、报名工具、活动归档与开源仓库",
+    "role4Desc": "维护网站、视觉物料、活动工具、资料归档与开源仓库",
     "role4Skills": "Web · Design · Tooling",
     "organizerCallTitle": "预留给未来的共建者",
-    "organizerCallDesc": "请将按钮替换为真实报名表或联系方式，并在上方人员卡片中补充姓名、角色、方向与个人主页"
+    "organizerCallDesc": "请将按钮替换为真实报名表或联系方式，并在上方人员卡片中补充姓名、角色、方向与个人主页",
+    "linksEyebrow": "USEFUL LINKS",
+    "linksTitle": "实用链接",
+    "linksLead": "汇集社团成员整理的外部资源，涵盖科研、申请、会议与日常学习",
+    "linksBrowse": "浏览资源",
+    "linksKicker": "RESOURCES",
+    "linksSectionTitle": "推荐资源",
+    "linksSectionDesc": "以下链接由社团成员收集整理，点击即可前往对应网站",
+    "linkVisit": "访问链接",
+    "link1Title": "上海交大生存手册",
+    "link1Desc": "面向研究生的实用经验手册，覆盖科研、选课、校园生活与职业发展等主题",
+    "link2Title": "CCF 会议截止日期",
+    "link2Desc": "追踪人工智能与计算机领域会议投稿截止日期（Deadline）的便捷工具",
+    "link3Title": "BlogrXiv",
+    "link3Desc": "将 arXiv 论文自动转化为博客形式，便于快速阅读与分享最新研究",
+    "link4Title": "ScholarTube",
+    "link4Desc": "学术视频与讲座的检索平台，按研究领域聚合研究者分享与讲解"
   },
   "en": {
     "brand": "HKUST(GZ) Frontier AI Club",
@@ -371,6 +388,7 @@ const translations = {
     "navTalks": "Talks",
     "navHandbook": "Handbook",
     "navCollab": "Collaboration",
+    "navLinks": "Useful Links",
     "navTeam": "Organizers",
     "footerIntro": "Connecting researchers, shared experience, and collaboration opportunities to build an open, rigorous, and supportive frontier AI club.",
     "footerExplore": "Explore",
@@ -469,10 +487,10 @@ const translations = {
     "upcomingTitle": "Upcoming events",
     "upcoming1Date": "TBA",
     "upcoming1Title": "HKUST(GZ) Frontier AI Club Kickoff",
-    "upcoming1Desc": "Introduce the club vision, annual plan, and ways to participate while collecting the first topics and project proposals.",
-    "upcoming2Date": "Open Call",
+    "upcoming1Desc": "Introduce the club vision, annual plan, and ways to participate, and preview the first topic areas.",
+    "upcoming2Date": "TBA",
     "upcoming2Title": "First Researcher Talk",
-    "upcoming2Desc": "Speakers and topics are being collected. Members may nominate researchers or propose their own talk.",
+    "upcoming2Desc": "The first talk will feature a researcher sharing recent work with in-depth discussion.",
     "handbookEyebrow": "AI FEIYUE HANDBOOK",
     "handbookTitle": "Turn experience into a public resource that others can search, compare, and reuse.",
     "handbookLead": "The handbook should record more than destinations. It should explain the information, preparation, project development, and reflection behind each decision.",
@@ -510,7 +528,7 @@ const translations = {
     "cat5Focus": "How do research skills connect to roles?",
     "cat5Content": "Role selection, resumes, interviews, internship projects, and career paths.",
     "statusPlanning": "Planning",
-    "statusOpen": "Open for Stories",
+    "statusOpen": "Actively updated",
     "contributeKicker": "CONTRIBUTE",
     "contributeTitle": "To contribute, explain the real process clearly.",
     "contributeDesc": "Maintainers can help with structure, bilingual editing, and web publishing. Contributors may submit Markdown, Word, PDF, or plain text.",
@@ -554,9 +572,9 @@ const translations = {
     "pr2Desc": "Use short cycles, deliverables, and transparent progress instead of indefinite commitments.",
     "pr3Title": "Keep Feedback Open",
     "pr3Desc": "Challenge methods without dismissing people, and let failed projects produce valuable retrospectives.",
-    "boardKicker": "PROJECT BOARD",
-    "boardTitle": "Reserved project board",
-    "boardDesc": "Once active, this area can list recruiting projects, reading groups, and reproduction tasks.",
+    "boardKicker": "RECRUITMENT",
+    "boardTitle": "Research Collaboration Recruitment",
+    "boardDesc": "This section hosts research collaboration recruitment. Once active, postings for projects, reading groups, and reproduction tasks will be published here.",
     "teamEyebrow": "ORGANIZERS",
     "teamTitle": "Organizers & Contributors",
     "teamLead": "People are intentionally left blank. Edit the placeholder cards in organizers.html or add a simple member data file later.",
@@ -649,7 +667,7 @@ const translations = {
     "ed3Desc": "Provide readings, slides, references, or discussion prompts so the event becomes a starting point for further work.",
     "upcomingDesc": "These are launch-stage placeholders. Replace them with verified speakers, dates, locations, and registration links when confirmed.",
     "eventPlaceholder": "TBA",
-    "eventRecruiting": "OPEN CALL",
+    "eventRecruiting": "TBA",
     "eventTypeLaunch": "Club Launch",
     "eventTypeTalk": "Research Talk",
     "eventOpen": "Open to campus",
@@ -662,7 +680,7 @@ const translations = {
     "projectBullet1": "Problem framing and motivation",
     "projectBullet2": "Methods, experiments, and engineering",
     "projectBullet3": "Failures, lessons, and reusable assets",
-    "categoriesDesc": "The first version focuses on common questions, then grows through continued contributions. Each section can include multiple perspectives.",
+    "categoriesDesc": "The first version focuses on common questions and expands over time. Each section can include multiple perspectives.",
     "templateKicker": "ARTICLE TEMPLATE",
     "templateTitle": "A shared structure, not a single answer.",
     "templateDesc": "The template helps contributors explain the real process and helps readers compare paths while preserving personal context and limitations.",
@@ -677,7 +695,7 @@ const translations = {
     "privacyTitle": "Privacy and accuracy first",
     "privacyDesc": "Personal details, advisor communication, admission results, or project information should be authorized or anonymized before publication.",
     "submitStory": "Submit a Story",
-    "viewProjectBoard": "View Project Board",
+    "viewProjectBoard": "View Recruitment",
     "startProposal": "Start a Proposal",
     "bestFor": "Best for",
     "ideaBest": "getting focused feedback",
@@ -689,7 +707,7 @@ const translations = {
     "filterReading": "Reading Group",
     "filterRepro": "Reproduction",
     "filterProject": "Early Project",
-    "boardTemplateNote": "The cards below are templates, not active recruitment.",
+    "boardTemplateNote": "The cards below are templates for structure reference.",
     "templateSlot": "Template",
     "boardCard1Title": "Multimodal Foundation Models Reading Group",
     "boardCard1Desc": "Example: run a four-week reading plan around one focused topic, with rotating presenters and shared notes.",
@@ -699,7 +717,7 @@ const translations = {
     "boardCard2Goal": "Run the minimum baseline and log issues",
     "boardCard3Title": "AI for Science Data Exploration",
     "boardCard3Desc": "Example: analyze one public dataset, define a task and metric, and identify the first baseline.",
-    "boardCard3Goal": "Submit a one-page problem and data report",
+    "boardCard3Goal": "Complete a one-page problem and data report",
     "twoWeekGoal": "Two-week goal",
     "projectCallTitle": "Put your real project here",
     "projectCallDesc": "A useful post states the problem, current resources, needed skills, expected commitment, and first two-week goal.",
@@ -727,7 +745,23 @@ const translations = {
     "role4Desc": "Maintain the website, visual materials, forms, archives, and open-source repository.",
     "role4Skills": "Web · Design · Tooling",
     "organizerCallTitle": "Reserved for future builders",
-    "organizerCallDesc": "Replace the button with a real application form or contact method, and add names, roles, interests, and profile links above."
+    "organizerCallDesc": "Replace the button with a real application form or contact method, and add names, roles, interests, and profile links above.",
+    "linksEyebrow": "USEFUL LINKS",
+    "linksTitle": "Useful Links",
+    "linksLead": "External resources curated by club members for research, applications, conferences, and daily learning.",
+    "linksBrowse": "Browse resources",
+    "linksKicker": "RESOURCES",
+    "linksSectionTitle": "Recommended resources",
+    "linksSectionDesc": "Curated by club members. Click any item to open the website.",
+    "linkVisit": "Visit",
+    "link1Title": "SJTU Survival Manual",
+    "link1Desc": "A practical handbook for graduate students covering research, courses, campus life, and career development.",
+    "link2Title": "CCF Conference Deadlines",
+    "link2Desc": "A convenient tool for tracking paper submission deadlines across AI and computer science venues.",
+    "link3Title": "BlogrXiv",
+    "link3Desc": "Turns arXiv papers into readable blog posts for quick browsing and sharing of the latest research.",
+    "link4Title": "ScholarTube",
+    "link4Desc": "A searchable hub for academic videos and talks, organized by research area."
   }
 };
 
@@ -757,7 +791,7 @@ function injectLayout() {
           ${navLink('talks.html','navTalks',page)}
           ${navLink('handbook.html','navHandbook',page)}
           ${navLink('collaboration.html','navCollab',page)}
-          ${navLink('organizers.html','navTeam',page)}
+          ${navLink('links.html','navLinks',page)}
         </nav>
         <div class="nav-actions">
           <button class="lang-toggle" id="langToggle" aria-label="Switch language">EN</button>
@@ -773,8 +807,7 @@ function injectLayout() {
             <a class="brand" href="index.html"><span class="brand-mark">FAI</span><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
             <p data-i18n="footerIntro"></p>
           </div>
-          <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a></div></div>
-          <div><div class="footer-title" data-i18n="footerConnect"></div><div class="footer-links"><a href="#" data-i18n="footerJoin"></a><a href="handbook.html#contribute" data-i18n="footerContribute"></a><a href="#" data-i18n="footerContact"></a></div></div>
+          <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a></div></div>
         </div>
         <div class="footer-bottom"><span data-i18n="copyright"></span><span data-i18n="footerNote"></span></div>
       </div>
@@ -790,7 +823,7 @@ function setLanguage(lang) {
   });
   const toggle = document.getElementById('langToggle');
   if (toggle) toggle.textContent = lang === 'zh' ? 'EN' : '中文';
-  localStorage.setItem('hkustgz-frontier-ai-lang', lang);
+  localStorage.setItem('hkustgz-frontier-ai-lang-v2', lang);
 }
 
 function initReveal() {
@@ -933,7 +966,7 @@ function initMenu() {
 
 document.addEventListener('DOMContentLoaded', () => {
   injectLayout();
-  let lang = localStorage.getItem('hkustgz-frontier-ai-lang') || 'zh';
+  let lang = localStorage.getItem('hkustgz-frontier-ai-lang-v2') || 'en';
   setLanguage(lang);
   document.getElementById('langToggle')?.addEventListener('click', () => { lang = lang === 'zh' ? 'en' : 'zh'; setLanguage(lang); });
   initMenu(); initReveal(); initCounters(); initScrollUI(); initAccordion(); initProjectFilters(); initCardEffects(); initParallax(); initNetworkCanvas();
