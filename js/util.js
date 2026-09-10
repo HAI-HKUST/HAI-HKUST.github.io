@@ -34,6 +34,11 @@ export function drivePreviewUrl(input) {
   return id ? `https://drive.google.com/file/d/${id}/preview` : '';
 }
 
+export function driveViewUrl(input) {
+  const id = extractDriveId(input);
+  return id ? `https://drive.google.com/file/d/${id}/view` : '';
+}
+
 export function talkPageUrl(id, embed = false) {
   if (!isTalkId(id)) return '';
   const params = new URLSearchParams({ id });

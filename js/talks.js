@@ -2,6 +2,7 @@ import { translations } from './i18n.js';
 import { talksByStatus, getTalkById } from './talks-data.js';
 import {
   drivePreviewUrl,
+  driveViewUrl,
   escapeHtml,
   hardenExternalLinks,
   isEmbedded,
@@ -54,15 +55,17 @@ function setPlayerMode(mode) {
   return next;
 }
 
+function videoSource(talk) {
+  return talk.video?.driveUrl || talk.video?.fileId || '';
+}
+
 function createDriveFrame(talk, title) {
-  const src = drivePreviewUrl(talk.video?.driveUrl || talk.video?.fileId || '');
+  const src = drivePreviewUrl(videoSource(talk));
   const frame = document.createElement('iframe');
   frame.className = 'talk-video-frame';
   frame.title = title || dict().talkVideoTitle;
-  frame.allow = 'fullscreen; encrypted-media; picture-in-picture';
-  frame.referrerPolicy = 'strict-origin-when-cross-origin';
+  frame.allow = 'autoplay; fullscreen; encrypted-media; picture-in-picture';
   frame.setAttribute('allowfullscreen', '');
-  frame.setAttribute('loading', 'lazy');
   if (src) frame.src = src;
   return frame;
 }
@@ -78,7 +81,6 @@ function renderTalkCard(talk) {
   const abstract = copy(talk, 'abstract');
   const bio = copy(talk, 'bio');
   const tags = copy(talk, 'tags', []);
-  const canOpen = Boolean(drivePreviewUrl(talk.video?.driveUrl || talk.video?.fileId || '') || talk.id);
   return `
     <article class="event-card featured talk-card" data-talk-id="${escapeHtml(talk.id)}">
       <div class="event-date">
@@ -101,7 +103,7 @@ function renderTalkCard(talk) {
           <button type="button" class="btn btn-primary" data-open-talk="${escapeHtml(talk.id)}">${escapeHtml(dict().watchReplay)}</button>
         </div>
       </div>
-      <div class="event-arrow" aria-hidden="true">${canOpen ? '▶' : '↗'}</div>
+      <div class="event-arrow" aria-hidden="true">↗</div>
     </article>
   `;
 }
@@ -131,10 +133,14 @@ function ensureChrome() {
         <div class="talk-window-actions">
           <button type="button" class="ghost-btn" data-talk-dock></button>
           <a class="ghost-btn" data-talk-standalone target="_blank" rel="noopener noreferrer"></a>
+          <a class="ghost-btn" data-talk-drive target="_blank" rel="noopener noreferrer" hidden></a>
           <button type="button" class="ghost-btn talk-close" data-close-talk aria-label="Close">×</button>
         </div>
       </header>
-      <iframe class="talk-window-frame" title="" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="talk-window-body">
+        <div class="talk-window-video" data-talk-window-video></div>
+        <p class="talk-window-abstract" data-talk-window-abstract></p>
+      </div>
     </div>
   `;
   const pip = document.createElement('aside');
@@ -156,10 +162,11 @@ function ensureChrome() {
 
 function closeTalkWindow() {
   const wrap = document.querySelector('.talk-window');
-  const frame = wrap?.querySelector('.talk-window-frame');
-  if (frame) frame.src = 'about:blank';
+  const stage = wrap?.querySelector('[data-talk-window-video]');
+  if (stage) stage.replaceChildren();
   if (wrap) {
     wrap.hidden = true;
+    wrap.classList.remove('is-open');
     wrap.dataset.talkId = '';
   }
   document.body.classList.remove('talk-window-open');
@@ -183,19 +190,31 @@ function openTalkWindow(talk) {
   ensureChrome();
   closePip();
   const wrap = document.querySelector('.talk-window');
-  const frame = wrap.querySelector('.talk-window-frame');
-  const url = talkPageUrl(talk.id, true);
+  const stage = wrap.querySelector('[data-talk-window-video]');
+  const driveHref = driveViewUrl(videoSource(talk));
   wrap.hidden = false;
+  wrap.classList.add('is-open');
   wrap.dataset.talkId = talk.id;
   setText(wrap.querySelector('.talk-window-kicker'), `${copy(talk, 'type')} · ${copy(talk, 'presenter')}`);
   setText(wrap.querySelector('#talk-window-title'), copy(talk, 'title'));
+  setText(wrap.querySelector('[data-talk-window-abstract]'), copy(talk, 'abstract'));
   setText(wrap.querySelector('[data-talk-dock]'), dict().dockVideo);
   const standalone = wrap.querySelector('[data-talk-standalone]');
   standalone.href = talkPageUrl(talk.id);
   setText(standalone, dict().openStandalone);
-  frame.title = copy(talk, 'title');
-  frame.allow = 'fullscreen; encrypted-media; picture-in-picture';
-  frame.src = url;
+  const driveLink = wrap.querySelector('[data-talk-drive]');
+  if (driveHref) {
+    driveLink.hidden = false;
+    driveLink.href = driveHref;
+    setText(driveLink, dict().openDrive);
+  } else {
+    driveLink.hidden = true;
+    driveLink.removeAttribute('href');
+  }
+  stage.replaceChildren(createDriveFrame(talk, copy(talk, 'title')));
+  if (!drivePreviewUrl(videoSource(talk))) {
+    setText(stage, dict().upcomingEmpty);
+  }
   document.body.classList.add('talk-window-open');
 }
 
@@ -255,7 +274,7 @@ function fillTalkPage(talk) {
   const stage = document.querySelector('[data-talk-video]');
   if (stage) {
     stage.replaceChildren(createDriveFrame(talk, title));
-    if (!drivePreviewUrl(talk.video?.driveUrl || talk.video?.fileId || '')) {
+    if (!drivePreviewUrl(videoSource(talk))) {
       setText(stage, dict().upcomingEmpty);
     }
   }
@@ -295,8 +314,8 @@ function initMessageBridge() {
 }
 
 function pageName() {
-  const path = location.pathname.split('/').pop() || 'index.html';
-  return path.replace('.html', '') || 'index';
+  const path = (location.pathname.replace(/\/+$/, '') || '/index.html').split('/').pop() || 'index.html';
+  return path.replace(/\.html$/i, '') || 'index';
 }
 
 function bindPlayerControls() {

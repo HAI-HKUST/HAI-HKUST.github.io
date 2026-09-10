@@ -411,7 +411,8 @@ export const translations = {
     "openStandalone": "单独打开页面",
     "talkPageEyebrow": "CLUB TALK",
     "talkMaterials": "分享详情",
-    "editTalkHint": "讲者、单位、简介与视频链接请在 js/talks-data.js 中填写。"
+    "editTalkHint": "讲者、单位、简介与视频链接请在 js/talks-data.js 中填写。",
+    "openDrive": "在 Google Drive 打开录像"
   },
   "en": {
     "brand": "HKUST(GZ) Frontier AI Club",
@@ -825,6 +826,7 @@ export const translations = {
     "openStandalone": "Open standalone page",
     "talkPageEyebrow": "CLUB TALK",
     "talkMaterials": "Talk details",
-    "editTalkHint": "Edit presenter, affiliation, bio, and video URL in js/talks-data.js."
+    "editTalkHint": "Edit presenter, affiliation, bio, and video URL in js/talks-data.js.",
+    "openDrive": "Open recording on Google Drive"
   }
 };
