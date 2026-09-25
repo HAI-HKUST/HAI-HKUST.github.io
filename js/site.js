@@ -37,7 +37,7 @@ function injectLayout() {
         </nav>
         <div class="nav-actions">
           <button class="lang-toggle" id="langToggle" aria-label="Switch language">EN</button>
-          <button class="menu-toggle" id="menuToggle" aria-label="Open navigation"><span></span></button>
+          <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks"><span></span></button>
         </div>
       </div>
     </header>`;
@@ -270,11 +270,13 @@ function initMenu() {
   menu?.addEventListener('click', () => {
     const open = nav?.classList.toggle('open');
     menu.classList.toggle('active', !!open);
+    menu.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.body.classList.toggle('menu-open', !!open);
   });
   document.querySelectorAll('#navLinks a').forEach((a) => a.addEventListener('click', () => {
     nav?.classList.remove('open');
     menu?.classList.remove('active');
+    menu?.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('menu-open');
   }));
 }
