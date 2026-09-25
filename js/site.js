@@ -129,10 +129,12 @@ function initScrollUI() {
 
 function initAccordion() {
   document.querySelectorAll('.accordion-item button').forEach((btn) => {
+    btn.setAttribute('aria-expanded', 'false');
     btn.addEventListener('click', () => {
       const item = btn.closest('.accordion-item');
       const panel = item?.querySelector('.accordion-panel');
       const open = item?.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (panel) panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0px';
     });
   });
