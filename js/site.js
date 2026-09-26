@@ -141,17 +141,6 @@ function initAccordion() {
   });
 }
 
-function initProjectFilters() {
-  const buttons = document.querySelectorAll('[data-filter]');
-  const cards = document.querySelectorAll('.project-card[data-category]');
-  buttons.forEach((btn) => btn.addEventListener('click', () => {
-    buttons.forEach((b) => b.classList.remove('active'));
-    btn.classList.add('active');
-    const value = btn.dataset.filter;
-    cards.forEach((card) => card.classList.toggle('hidden', value !== 'all' && card.dataset.category !== value));
-  }));
-}
-
 function initCardEffects() {
   if (matchMedia('(pointer: coarse)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.querySelectorAll('[data-tilt]').forEach((card) => {
@@ -303,7 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initScrollUI();
   initAccordion();
-  initProjectFilters();
   initCardEffects();
   initParallax();
   initNetworkCanvas();
