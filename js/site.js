@@ -135,6 +135,7 @@ function initAccordion() {
       const panel = item?.querySelector('.accordion-panel');
       const open = item?.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (panel) panel.setAttribute('aria-hidden', open ? 'false' : 'true');
       if (panel) panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0px';
     });
   });
