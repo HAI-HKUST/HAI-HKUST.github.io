@@ -14,6 +14,8 @@ import {
 
 const PLAYER_MODE_KEY = 'hkustgz-talk-player-mode-v1';
 const PLAYER_MODES = new Set(['window', 'pip']);
+let dialogReturnFocus = null;
+let inertedElements = [];
 
 function currentLang() {
   return document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
@@ -160,8 +162,9 @@ function ensureChrome() {
   hardenExternalLinks(windowWrap);
 }
 
-function closeTalkWindow() {
+function closeTalkWindow(restoreFocus = true) {
   const wrap = document.querySelector('.talk-window');
+  const wasOpen = wrap && !wrap.hidden;
   const stage = wrap?.querySelector('[data-talk-window-video]');
   if (stage) stage.replaceChildren();
   if (wrap) {
@@ -170,6 +173,12 @@ function closeTalkWindow() {
     wrap.dataset.talkId = '';
   }
   document.body.classList.remove('talk-window-open');
+  inertedElements.forEach((element) => { element.inert = false; });
+  inertedElements = [];
+  if (wasOpen && restoreFocus) {
+    if (dialogReturnFocus?.isConnected) dialogReturnFocus.focus();
+    dialogReturnFocus = null;
+  }
 }
 
 function closePip() {
@@ -216,11 +225,15 @@ function openTalkWindow(talk) {
     setText(stage, dict().upcomingEmpty);
   }
   document.body.classList.add('talk-window-open');
+  inertedElements = [...document.body.children].filter((element) => element !== wrap && !element.inert);
+  inertedElements.forEach((element) => { element.inert = true; });
+  wrap.querySelector('[data-close-talk].talk-close').focus();
 }
 
 function openTalkPip(talk) {
   ensureChrome();
-  closeTalkWindow();
+  const wasModalOpen = !document.querySelector('.talk-window').hidden;
+  closeTalkWindow(false);
   const pip = document.querySelector('.talk-pip');
   const stage = pip.querySelector('.talk-pip-stage');
   pip.hidden = false;
@@ -230,6 +243,7 @@ function openTalkPip(talk) {
   stage.replaceChildren(createDriveFrame(talk, copy(talk, 'title')));
   const pageStage = document.querySelector('[data-talk-video]');
   if (pageStage) pageStage.replaceChildren();
+  if (wasModalOpen) pip.querySelector('[data-pip-expand]').focus();
 }
 
 function openTalk(id, mode = getPlayerMode()) {
@@ -253,7 +267,10 @@ function bindList(container) {
     const opener = event.target.closest('[data-open-talk], [data-talk-id]');
     if (!opener || !container.contains(opener)) return;
     const id = opener.dataset.openTalk || opener.dataset.talkId;
-    if (id) openTalk(id);
+    if (id) {
+      dialogReturnFocus = opener.matches('[data-open-talk]') ? opener : opener.querySelector('[data-open-talk]');
+      openTalk(id);
+    }
   });
 }
 
