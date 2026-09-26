@@ -269,18 +269,24 @@ function initNetworkCanvas() {
 function initMenu() {
   const menu = document.getElementById('menuToggle');
   const nav = document.getElementById('navLinks');
+  const closeMenu = () => {
+    nav?.classList.remove('open');
+    menu?.classList.remove('active');
+    menu?.setAttribute('aria-expanded', 'false');
+    menu?.setAttribute('aria-label', 'Open navigation');
+    document.body.classList.remove('menu-open');
+  };
   menu?.addEventListener('click', () => {
     const open = nav?.classList.toggle('open');
     menu.classList.toggle('active', !!open);
     menu.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
     document.body.classList.toggle('menu-open', !!open);
   });
-  document.querySelectorAll('#navLinks a').forEach((a) => a.addEventListener('click', () => {
-    nav?.classList.remove('open');
-    menu?.classList.remove('active');
-    menu?.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('menu-open');
-  }));
+  document.querySelectorAll('#navLinks a').forEach((a) => a.addEventListener('click', closeMenu));
+  matchMedia('(min-width: 1051px)').addEventListener('change', (event) => {
+    if (event.matches) closeMenu();
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
