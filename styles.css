@@ -307,6 +307,7 @@ body:has(.talk-pip:not([hidden])) .back-to-top{opacity:0;pointer-events:none}
 .talk-window{position:fixed;inset:0;z-index:200;display:none;place-items:center}
 .talk-window.is-open,.talk-window:not([hidden]){display:grid}
 .talk-window[hidden]{display:none!important}
+.talk-focus-guard{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
 .talk-window-backdrop{position:absolute;inset:0;background:rgba(2,8,23,.72);backdrop-filter:blur(10px)}
 .talk-window-chrome{position:relative;z-index:1;width:min(1080px,calc(100vw - 32px));height:min(86vh,900px);display:grid;grid-template-rows:auto 1fr;border:1px solid rgba(255,255,255,.14);border-radius:24px;overflow:hidden;background:var(--navy-950);box-shadow:0 40px 100px rgba(0,0,0,.45)}
 .talk-window-bar{display:flex;align-items:start;justify-content:space-between;gap:16px;padding:16px 18px;color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent)}

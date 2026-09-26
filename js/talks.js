@@ -127,6 +127,7 @@ function ensureChrome() {
   windowWrap.innerHTML = `
     <div class="talk-window-backdrop" data-close-talk></div>
     <div class="talk-window-chrome" role="dialog" aria-modal="true" aria-labelledby="talk-window-title">
+      <span class="talk-focus-guard" tabindex="0" data-focus-guard="start"></span>
       <header class="talk-window-bar">
         <div>
           <p class="talk-window-kicker"></p>
@@ -143,8 +144,18 @@ function ensureChrome() {
         <div class="talk-window-video" data-talk-window-video></div>
         <p class="talk-window-abstract" data-talk-window-abstract></p>
       </div>
+      <span class="talk-focus-guard" tabindex="0" data-focus-guard="end"></span>
     </div>
   `;
+  // Focus guards also catch Tab leaving the cross-origin video iframe.
+  windowWrap.querySelectorAll('[data-focus-guard]').forEach((guard) => {
+    guard.addEventListener('focus', () => {
+      const controls = [...windowWrap.querySelectorAll('button:not([disabled]), a[href], iframe')]
+        .filter((element) => !element.hidden && element.getClientRects().length);
+      const target = guard.dataset.focusGuard === 'start' ? controls.at(-1) : controls[0];
+      target?.focus();
+    });
+  });
   const pip = document.createElement('aside');
   pip.className = 'talk-pip';
   pip.hidden = true;
@@ -165,6 +176,7 @@ function ensureChrome() {
 function closeTalkWindow(restoreFocus = true) {
   const wrap = document.querySelector('.talk-window');
   const wasOpen = wrap && !wrap.hidden;
+  const id = wrap?.dataset.talkId;
   const stage = wrap?.querySelector('[data-talk-window-video]');
   if (stage) stage.replaceChildren();
   if (wrap) {
@@ -176,7 +188,9 @@ function closeTalkWindow(restoreFocus = true) {
   inertedElements.forEach((element) => { element.inert = false; });
   inertedElements = [];
   if (wasOpen && restoreFocus) {
-    if (dialogReturnFocus?.isConnected) dialogReturnFocus.focus();
+    const returnFocus = dialogReturnFocus?.isConnected ? dialogReturnFocus
+      : isTalkId(id) ? document.querySelector(`[data-open-talk="${id}"]`) : null;
+    returnFocus?.focus();
     dialogReturnFocus = null;
   }
 }
