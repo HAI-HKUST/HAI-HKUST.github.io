@@ -87,9 +87,13 @@ body:hover .cursor-glow{opacity:1}
 .nav-links a::after{content:"";position:absolute;left:50%;right:50%;bottom:3px;height:1px;background:var(--gold-400);transition:.25s var(--ease)}
 .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.075)}
 .nav-links a:hover::after,.nav-links a.active::after{left:14px;right:14px}
+.nav-links .nav-github-mobile{display:none;align-items:center;gap:8px}
 .nav-actions{display:flex;align-items:center;gap:9px}
-.lang-toggle,.menu-toggle{color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.06);padding:8px 12px;cursor:pointer;transition:.22s ease}
-.lang-toggle:hover,.menu-toggle:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.34)}
+.nav-github svg{width:22px;height:22px;flex:none}
+.nav-github-mobile svg{width:17px;height:17px;flex:none}
+.nav-github,.lang-toggle,.menu-toggle{color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.06);padding:8px 12px;cursor:pointer;transition:.22s ease}
+.nav-github:hover,.lang-toggle:hover,.menu-toggle:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.34)}
+.nav-github,.lang-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;padding:0}
 .menu-toggle{display:none;width:42px;height:42px;padding:0;position:relative}
 .menu-toggle span,.menu-toggle::before,.menu-toggle::after{content:"";position:absolute;left:11px;width:18px;height:1.5px;background:#fff;transition:.25s ease}
 .menu-toggle::before{top:14px}.menu-toggle span{top:20px}.menu-toggle::after{top:26px}
@@ -260,7 +264,7 @@ body:hover .cursor-glow{opacity:1}
 
 @media (max-width:1050px){
   .nav-links{display:none;position:fixed;left:20px;right:20px;top:86px;padding:14px;border-radius:20px;background:rgba(3,18,47,.98);border:1px solid rgba(255,255,255,.13);box-shadow:0 24px 60px rgba(0,0,0,.3)}
-  .nav-links.open{display:grid}.nav-links a{padding:12px 14px}.menu-toggle{display:block}
+  .nav-links.open{display:grid}.nav-links a{padding:12px 14px}.nav-links .nav-github-mobile{display:flex}.nav-github{display:none}.menu-toggle{display:block}
   .hero-inner,.page-hero-inner{grid-template-columns:1fr}.hero-inner{padding-top:150px}.hero-copy{max-width:780px}.orbit-stage{min-height:500px}.page-hero{min-height:auto}.page-hero-inner{padding:140px 0 80px}.page-visual{min-height:380px}
   .pillars,.principles,.audience-grid{grid-template-columns:1fr}.pillar-card{min-height:auto}.program-card:nth-child(n){grid-column:span 12}.stat-panel{grid-template-columns:1fr}.roadmap{grid-template-columns:1fr 1fr}.roadmap-line{display:none}.roadmap-step b{top:18px;left:auto;right:20px;transform:none}.roadmap-dot{display:none}.process-track{grid-template-columns:1fr 1fr}.process-line{display:none}.process-track article{padding:24px;border:1px solid rgba(255,255,255,.12);border-radius:18px}.process-track article>b{top:16px;right:18px;left:auto}.process-track article>span{display:none}.project-grid{grid-template-columns:1fr 1fr}.role-grid{grid-template-columns:1fr 1fr}.include-grid{grid-template-columns:1fr 1fr}.team-grid{grid-template-columns:repeat(2,1fr)}.cta-band-inner,.footer-grid{grid-template-columns:1fr}.cta-actions{justify-content:flex-start}
 }
