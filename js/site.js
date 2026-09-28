@@ -1,4 +1,4 @@
-import { translations } from './i18n.js';
+import { translations } from './i18n.js?v=20260928';
 import { initTalks, refreshTalks } from './talks.js';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
