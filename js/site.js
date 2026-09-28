@@ -49,7 +49,7 @@ function injectLayout() {
             <a class="brand" href="index.html"><span class="brand-mark">FAI</span><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
             <p data-i18n="footerIntro"></p>
           </div>
-          <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a></div></div>
+          <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a><a href="https://github.com/HAI-HKUST" target="_blank" rel="noopener noreferrer" data-i18n="footerGitHub"></a></div></div>
         </div>
         <div class="footer-bottom"><span data-i18n="copyright"></span><span data-i18n="footerNote"></span></div>
       </div>
