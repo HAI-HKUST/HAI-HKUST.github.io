@@ -274,6 +274,15 @@ body:hover .cursor-glow{opacity:1}
   .process-track{grid-template-columns:1fr}.event-card{grid-template-columns:72px 1fr;padding:22px;gap:18px}.event-arrow{display:none}.event-date strong{font-size:34px}.event-date{padding:8px}.event-meta{flex-direction:column;gap:4px}.include-grid{grid-template-columns:1fr}.template-shell{grid-template-columns:1fr}.template-shell aside{display:flex;overflow:auto}.template-shell aside span{white-space:nowrap}.template-shell article{padding:28px}.template-columns{grid-template-columns:1fr}.resource-row,.resource-row.header{grid-template-columns:1fr;gap:7px}.resource-row.header{display:none}.board-toolbar{align-items:flex-start;flex-direction:column}.team-grid{grid-template-columns:1fr}.organizer-note{display:grid}.team-section-head{align-items:flex-start;flex-direction:column}.footer-bottom{flex-direction:column}.cursor-glow{display:none}
 }
 
+@media (max-width:1050px){
+  .hero-inner,.page-hero-inner{min-height:0;grid-template-columns:minmax(0,1fr)}
+  .hero-inner{padding:120px 0 48px}
+  .page-hero-inner{padding:48px 0}
+  .hero-copy,.page-hero-copy{min-width:0;overflow-wrap:anywhere}
+  .hero h1 .accent{white-space:normal}
+  .page-visual,.orbit-stage{display:none}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.network-canvas{display:none}.reveal{opacity:1;transform:none}.marquee-track{transform:none}
 }
@@ -365,7 +374,7 @@ body.talk-embed .talk-video-shell{height:100%;aspect-ratio:auto;border:0;border-
 .resource-group + .resource-group{margin-top:48px}
 .section-heading .resource-contribute{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:12px 0 0;font-size:14px}
 .resource-share-link{color:var(--blue-700);font-weight:700;text-decoration:underline;text-underline-offset:4px}
-.resource-shortcuts{gap:12px 28px}
+.resource-shortcuts{display:flex;flex-wrap:wrap;gap:12px 28px}
 .resource-shortcuts a{padding:8px 0;color:rgba(255,255,255,.88);font-size:15px;font-weight:650;text-decoration:none;text-underline-offset:7px}
 .resource-shortcuts a:hover,.resource-shortcuts a:focus-visible{color:#fff;text-decoration:underline}
 
