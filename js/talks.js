@@ -1,5 +1,5 @@
-import { translations } from './i18n.js';
-import { talksByStatus, getTalkById } from './talks-data.js';
+import { translations } from './i18n.js?v=20261019';
+import { talksByStatus, getTalkById } from './talks-data.js?v=20261019';
 import {
   drivePreviewUrl,
   driveViewUrl,
@@ -76,7 +76,27 @@ function renderTags(tags = []) {
   return tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
 }
 
+function renderUpcomingTalk(talk) {
+  return `
+    <article class="upcoming-talk" aria-labelledby="upcoming-${escapeHtml(talk.id)}">
+      <div class="upcoming-speaker">
+        <img class="speaker-photo" src="${escapeHtml(talk.photo)}" alt="${escapeHtml(copy(talk, 'presenter'))}" width="1080" height="1440" loading="lazy">
+        <div class="upcoming-speaker-caption"><strong>${escapeHtml(copy(talk, 'presenter'))}</strong><span>${escapeHtml(copy(talk, 'affiliation'))}</span></div>
+      </div>
+      <div class="upcoming-copy">
+        <div class="event-type">${escapeHtml(copy(talk, 'type'))}</div>
+        <h3 id="upcoming-${escapeHtml(talk.id)}">${escapeHtml(copy(talk, 'title'))}</h3>
+        <p class="upcoming-time"><time datetime="${escapeHtml(talk.date)}T19:00:00+08:00">${escapeHtml(copy(talk, 'time'))}</time></p>
+        <p class="upcoming-summary">${escapeHtml(copy(talk, 'abstract'))}</p>
+        <div class="upcoming-topics"><h4>${escapeHtml(dict().discussionTopics)}</h4><ol>${copy(talk, 'topics', []).map((topic) => `<li>${escapeHtml(topic)}</li>`).join('')}</ol></div>
+      </div>
+      <div class="speaker-bio upcoming-bio"><div class="bio-label">${escapeHtml(dict().speakerBioLabel)}</div><p>${escapeHtml(copy(talk, 'bio'))}</p></div>
+    </article>
+  `;
+}
+
 function renderTalkCard(talk) {
+  if (talk.status === 'upcoming') return renderUpcomingTalk(talk);
   const title = copy(talk, 'title');
   const presenter = copy(talk, 'presenter');
   const affiliation = copy(talk, 'affiliation');
