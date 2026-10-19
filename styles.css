@@ -81,7 +81,7 @@ body:hover .cursor-glow{opacity:1}
 .site-header.header-hidden{transform:translateY(-100%)}
 .nav-wrap{height:76px;display:flex;align-items:center;justify-content:space-between;gap:28px}
 .brand{display:inline-flex;align-items:center;gap:12px;color:#fff;font-weight:760;letter-spacing:-.02em;white-space:nowrap;min-width:0}
-.brand-mark{display:block;width:66px;height:44px;flex-shrink:0;object-fit:contain;padding:4px;border-radius:8px;background:#fff}
+.brand-mark{display:block;width:44px;height:44px;flex-shrink:0;object-fit:contain}
 .brand-name{font-size:14px;line-height:1.12}.brand-name small{display:block;color:rgba(255,255,255,.56);font-size:9px;font-weight:550;letter-spacing:.08em;text-transform:none;line-height:1.25;margin-top:3px}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-links a,.resource-shortcuts a{color:rgba(255,255,255,.7);padding:9px 12px;border-radius:999px;font-size:14px;transition:.24s ease;position:relative}
