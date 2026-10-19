@@ -365,6 +365,9 @@ body.talk-embed .talk-video-shell{height:100%;aspect-ratio:auto;border:0;border-
 .resource-group + .resource-group{margin-top:48px}
 .section-heading .resource-contribute{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:12px 0 0;font-size:14px}
 .resource-share-link{color:var(--blue-700);font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.resource-shortcuts{gap:12px 28px}
+.resource-shortcuts a{padding:8px 0;color:rgba(255,255,255,.88);font-size:15px;font-weight:650;text-decoration:none;text-underline-offset:7px}
+.resource-shortcuts a:hover,.resource-shortcuts a:focus-visible{color:#fff;text-decoration:underline}
 
 /* Upcoming research talk */
 .upcoming-talk{display:grid;grid-template-columns:280px minmax(0,1fr);align-items:start;overflow:hidden;border:1px solid rgba(37,99,235,.22);border-radius:24px;background:linear-gradient(135deg,#fff,#f0f6ff);box-shadow:var(--shadow)}
