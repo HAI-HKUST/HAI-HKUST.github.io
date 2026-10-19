@@ -361,6 +361,7 @@ body.talk-embed .talk-video-shell{height:100%;aspect-ratio:auto;border:0;border-
 
 
 .resource-group-title{margin:0 0 20px;font-size:22px;color:var(--navy-800)}
+.resource-group{scroll-margin-top:100px}
 .resource-group + .resource-group{margin-top:48px}
 
 /* Upcoming research talk */
