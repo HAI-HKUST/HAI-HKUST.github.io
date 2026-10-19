@@ -419,3 +419,35 @@ body.talk-embed .talk-video-shell{height:100%;aspect-ratio:auto;border:0;border-
   .upcoming-speaker-caption{padding:16px}
   .upcoming-speaker-caption span{font-size:12px}
 }
+
+/* Shared reading scale for phones and tablets. */
+@media(max-width:1050px){
+  :root{--compact-card-padding:20px;--compact-card-radius:20px}
+  body{font-size:15px}
+  .section[id],.section-tight[id]{scroll-margin-top:92px}
+  .section-heading{grid-template-columns:minmax(0,1fr);gap:8px}
+  .section-heading h2,.stat-intro h2,.cta-band h2{font-size:clamp(26px,3.5vw,32px);line-height:1.25}
+  .section-heading p{font-size:15px;line-height:1.75;margin-top:12px}
+  .section-heading .kicker{padding-top:0}
+  .pillar-card,.program-card,.feature-card,.audience-card,.principle,.project-card,.role-card,.link-card,.notice-card,.dark-notice{padding:var(--compact-card-padding);border-radius:var(--compact-card-radius);min-height:0}
+  .pillar-card h3,.program-card h3,.feature-card h3,.audience-card h3,.principle h3,.project-card h3,.role-card h3,.notice-card h3,.dark-notice h3,.event-body h3,.link-card h4{font-size:20px;line-height:1.35}
+  .pillar-card p,.program-card p,.audience-card p,.principle p{font-size:15px;line-height:1.75}
+  .pillar-card{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px 16px}
+  .pillar-card .pillar-number{position:absolute;top:16px;right:18px;font-size:11px}
+  .pillar-icon{grid-column:1;grid-row:1;width:48px;height:48px;margin:0;border-radius:14px}
+  .pillar-icon svg{width:24px;height:24px}
+  .pillar-card h3{grid-column:2;grid-row:1;align-self:center;padding-right:24px}
+  .pillar-card p,.pillar-card .text-link{grid-column:1/-1;margin:0}
+  .pillar-card::after{width:120px;height:120px;right:-60px;top:-60px}
+  .program-card h3,.feature-card h3{margin:16px 0 8px}
+  .audience-card h3{margin:12px 0 8px}
+  .tag-list{margin-top:16px}
+  .stat-panel{padding:24px;gap:24px}
+  .stat-item strong{font-size:36px}
+  .accordion-item button{font-size:17px;padding:18px 0}
+  .resource-group-title,.resource-contribute h3{font-size:20px}
+  .upcoming-copy h3,.talk-room-copy h1{font-size:26px;line-height:1.3}
+  .upcoming-talk,.talk-bio-panel{border-radius:var(--compact-card-radius)}
+  .template-shell article{padding:var(--compact-card-padding)}
+  .btn{min-height:44px}
+}
