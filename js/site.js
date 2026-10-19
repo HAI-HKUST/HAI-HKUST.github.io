@@ -1,4 +1,4 @@
-import { translations } from './i18n.js?v=20261019-resource-share-compact';
+import { translations } from './i18n.js?v=20261019-elpa-backup';
 import { initTalks, refreshTalks } from './talks.js?v=20261019';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
