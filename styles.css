@@ -285,12 +285,16 @@ a:hover .link-chevron,a:focus-visible .link-chevron,.link-cta:hover::after,.link
 }
 
 @media (max-width:1050px){
+  .hero{min-height:0}
   .hero-inner,.page-hero-inner{min-height:0;grid-template-columns:minmax(0,1fr)}
   .hero-inner{padding:120px 0 48px}
   .page-hero-inner{padding:48px 0}
   .hero-copy,.page-hero-copy{min-width:0;overflow-wrap:anywhere}
+  .hero-copy{max-width:680px}
+  .page-hero-copy{max-width:720px}
+  .hero-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:420px;gap:20px;margin-top:32px;padding-top:20px}
   .hero h1 .accent{white-space:normal}
-  .page-visual,.orbit-stage{display:none}
+  .page-visual,.orbit-stage,.scroll-cue{display:none}
 }
 
 @media (prefers-reduced-motion:reduce){
