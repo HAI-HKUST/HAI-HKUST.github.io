@@ -284,7 +284,9 @@ function initMenu() {
 
 document.addEventListener('DOMContentLoaded', () => {
   injectLayout();
-  let lang = localStorage.getItem('hkustgz-frontier-ai-lang-v2') || 'en';
+  const requestedLang = new URLSearchParams(location.search).get('lang');
+  let lang = (requestedLang === 'zh' || requestedLang === 'en')
+    ? requestedLang : localStorage.getItem('hkustgz-frontier-ai-lang-v2') || 'en';
   setLanguage(lang);
   document.getElementById('langToggle')?.addEventListener('click', () => {
     lang = lang === 'zh' ? 'en' : 'zh';
