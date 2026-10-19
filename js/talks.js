@@ -125,7 +125,7 @@ function renderTalkCard(talk) {
           <button type="button" class="btn btn-primary" data-open-talk="${escapeHtml(talk.id)}">${escapeHtml(dict().watchReplay)}</button>
         </div>
       </div>
-      <div class="event-arrow" aria-hidden="true">↗</div>
+      <div class="event-arrow link-chevron" aria-hidden="true"></div>
     </article>
   `;
 }

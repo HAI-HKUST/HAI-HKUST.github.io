@@ -1,5 +1,5 @@
 import { translations } from './i18n.js?v=20261019-elpa-backup';
-import { initTalks, refreshTalks } from './talks.js?v=20261019';
+import { initTalks, refreshTalks } from './talks.js?v=20261019-link-chevrons';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
