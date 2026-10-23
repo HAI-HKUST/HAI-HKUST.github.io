@@ -65,6 +65,11 @@ function setLanguage(lang) {
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.dataset.i18n;
     if (dict[key] !== undefined) el.textContent = dict[key];
+    if ((key === 'brand' || key === 'brandSub') && el.closest('.site-header')) {
+      const parts = dict[key] === translations.zh.brand
+        ? ['香港科技大学', '前沿人工智能社团'] : ['HKUST Frontier AI Club'];
+      el.replaceChildren(...parts.flatMap((part, index) => index ? [document.createElement('br'), document.createTextNode(part)] : [document.createTextNode(part)]));
+    }
   });
   const toggle = document.getElementById('langToggle');
   if (toggle) toggle.textContent = lang === 'zh' ? 'EN' : '中文';

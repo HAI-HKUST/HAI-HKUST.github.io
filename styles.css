@@ -268,6 +268,38 @@ a:hover .link-chevron,a:focus-visible .link-chevron,.link-cta:hover::after,.link
 @keyframes barPulse{0%,100%{filter:brightness(.8);transform:scaleY(.9)}50%{filter:brightness(1.25);transform:scaleY(1.05)}}
 @keyframes dash{to{stroke-dashoffset:-120}}
 
+.site-header .brand-name br{display:none}
+
+/* Desktop sidebar; embedded talk players keep their full viewport. */
+@media (min-width:1051px){
+  body:not(.talk-embed){padding-left:220px}
+  .site-header,.site-header.scrolled{right:auto;bottom:0;width:220px;border-bottom:0;border-right:1px solid rgba(255,255,255,.12);background:var(--navy-950);box-shadow:none}
+  .site-header.header-hidden{transform:none}
+  .site-header .nav-wrap{width:100%;height:100%;padding:32px 20px;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:36px;overflow-y:auto}
+  .site-header .brand{flex-direction:column;align-items:center;white-space:normal;gap:16px;text-align:center}
+  .site-header .brand-mark{width:84px;height:84px}
+  .site-header .brand-name{display:block;font-size:15px;line-height:1.65;letter-spacing:.015em;width:100%;font-weight:650}
+  .site-header .brand-name>span{display:block;max-width:168px;margin-inline:auto;text-wrap:balance}
+  .site-header .brand-name small{display:block;max-width:168px;margin:10px auto 0;font-size:11px;line-height:1.6;letter-spacing:.015em;font-weight:450;text-wrap:balance;color:rgba(255,255,255,.6)}
+  html[lang="zh-CN"] .site-header .brand-name small{white-space:nowrap;font-size:10px}
+  html[lang="en"] .site-header .brand-name>span{white-space:nowrap;font-size:13px;letter-spacing:0}
+  .site-header .brand-name br{display:block}
+  .site-header .nav-links{flex-direction:column;align-items:stretch;gap:8px}
+  .site-header .nav-links a{padding:12px 14px;border-radius:12px}
+  .site-header .nav-actions{margin-top:auto;padding-top:24px}
+  body:not(.talk-embed) .scroll-progress{left:220px}
+  .hero-inner{padding-top:72px}
+  .page-hero{padding-top:0;min-height:644px}
+  body:not(.talk-embed) .talk-room{padding-top:32px}
+}
+
+@media (min-width:1051px) and (max-width:1350px){
+  .hero-inner,.page-hero-inner{grid-template-columns:minmax(0,1fr);gap:32px}
+  .page-hero-inner{padding-block:64px}
+  .hero-copy,.page-hero-copy{min-width:0}
+  .page-visual{justify-items:center}
+}
+
 @media (max-width:1050px){
   .nav-links{display:none;position:fixed;left:20px;right:20px;top:86px;padding:14px;border-radius:20px;background:rgba(3,18,47,.98);border:1px solid rgba(255,255,255,.13);box-shadow:0 24px 60px rgba(0,0,0,.3)}
   .nav-links.open{display:grid}.nav-links a{padding:12px 14px}.nav-links .nav-github-mobile{display:flex}.nav-github{display:none}.menu-toggle{display:block}
