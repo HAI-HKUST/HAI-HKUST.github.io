@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-footer-github';
-import { initTalks, refreshTalks } from './talks.js?v=20261023-footer-github';
+import { translations } from './i18n.js?v=20261023-footer-alignment';
+import { initTalks, refreshTalks } from './talks.js?v=20261023-footer-alignment';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
@@ -53,7 +53,7 @@ function injectLayout() {
             <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/club-logo.png?v=20261019-logo-v2" width="66" height="66" alt=""><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
             <p data-i18n="footerIntro"></p>
           </div>
-          <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a><a href="https://github.com/HAI-HKUST" target="_blank" rel="noopener noreferrer" data-i18n="footerGitHub"></a></div></div>
+          <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a></div></div>
         </div>
         <div class="footer-bottom"><span data-i18n="copyright"></span><a class="footer-github" href="https://github.com/HAI-HKUST" target="_blank" rel="noopener noreferrer">${githubIcon}<span data-i18n="footerGitHub"></span></a></div>
       </div>
@@ -120,6 +120,7 @@ function initScrollUI() {
   const header = document.querySelector('.site-header');
   const progress = document.querySelector('.scroll-progress span');
   const topBtn = document.querySelector('.back-to-top');
+  const footerBottom = document.querySelector('.footer-bottom');
   let lastY = window.scrollY;
   const onScroll = () => {
     const y = window.scrollY;
@@ -129,9 +130,15 @@ function initScrollUI() {
     if (y > 500 && y > lastY + 8) header?.classList.add('header-hidden');
     else if (y < lastY - 8 || y < 120) header?.classList.remove('header-hidden');
     topBtn?.classList.toggle('visible', y > 650);
+    if (topBtn && footerBottom) {
+      const footerOffset = innerHeight - footerBottom.getBoundingClientRect().top - topBtn.offsetHeight / 2;
+      const atBottom = y >= max - 1;
+      topBtn.style.bottom = `${Math.max(atBottom ? 16 : 52, footerOffset)}px`;
+    }
     lastY = y;
   };
   addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
   onScroll();
   topBtn?.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 }
