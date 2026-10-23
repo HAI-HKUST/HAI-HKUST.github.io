@@ -616,6 +616,7 @@ body[data-page="talk"]{background:#fff}
 
 /* Keep both club names visible in the mobile header. */
 @media(max-width:1050px){
+ .site-header,.site-header.scrolled{background:var(--navy-950);backdrop-filter:none}
  .site-header .nav-wrap{gap:12px}
  .site-header .brand{flex:1;gap:8px}
  .site-header .brand-name{font-size:12px;line-height:1.4;max-width:none;min-width:0;white-space:normal;overflow:visible;text-overflow:clip}
