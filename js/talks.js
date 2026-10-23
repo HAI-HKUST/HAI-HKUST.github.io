@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-unified-naming';
-import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-unified-naming';
+import { translations } from './i18n.js?v=20261023-footer-copyright';
+import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-footer-copyright';
 import {
   drivePreviewUrl,
   driveViewUrl,
