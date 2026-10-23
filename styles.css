@@ -636,19 +636,26 @@ body[data-page="talk"]{background:#fff}
 /* Brand typography shared by the sidebar and footer. */
 .site-header .brand-name,.footer-brand .brand-name{font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;font-weight:600;letter-spacing:.025em}
 .site-header .brand-name small,.footer-brand .brand-name small{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-weight:400;color:rgba(255,255,255,.65)}
-.footer-brand .brand{display:flex;flex-direction:column;align-items:center;width:260px;max-width:100%;gap:20px;white-space:normal;text-align:center}
-.footer-brand .brand-mark{width:88px;height:88px}
-.footer-brand .brand-name{font-size:18px;line-height:1.7;text-align:center}
-.footer-brand .brand-name small{display:block;font-size:12px;line-height:1.6;letter-spacing:.035em;margin-top:12px;white-space:nowrap}
+.footer-brand .brand{display:inline-flex;flex-direction:row;align-items:center;max-width:100%;gap:14px;white-space:normal;text-align:center}
+.footer-brand .brand-mark{width:66px;height:66px}
+.footer-brand .brand-name{font-size:15px;line-height:1.5;text-align:center}
+.footer-brand .brand-name small{display:block;font-size:11px;line-height:1.5;letter-spacing:.02em;margin-top:5px;white-space:nowrap}
 .footer-brand .brand-name small br{display:none}
 @media(min-width:1051px){
- .site-header .brand{gap:18px}
- .site-header .brand-name{font-size:16px;line-height:1.75;font-weight:600;letter-spacing:.025em}
- .site-header .brand-name small{margin-top:12px;letter-spacing:.025em;font-weight:400}
+ .site-header .brand{gap:10px}
+ .site-header .brand-name{font-size:15px;line-height:1.6;font-weight:600;letter-spacing:.025em}
+ .site-header .brand-name small{margin-top:6px;letter-spacing:.025em;font-weight:400}
  html[lang="zh-CN"] .site-header .brand-name small{font-size:10.5px}
  html[lang="en"] .site-header .brand-name>span{font-size:13px;font-weight:500}
 }
 @media(max-width:1050px){
  .site-header .brand-name{font-weight:600;letter-spacing:0;line-height:1.5}
  .site-header .brand-name small{font-weight:400;letter-spacing:.01em}
+}
+
+@media(max-width:400px){
+ .footer-brand .brand{gap:10px}
+ .footer-brand .brand-mark{width:52px;height:52px}
+ .footer-brand .brand-name{font-size:13px}
+ .footer-brand .brand-name small{font-size:10px}
 }
