@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-brand-type';
-import { initTalks, refreshTalks } from './talks.js?v=20261023-brand-type';
+import { translations } from './i18n.js?v=20261023-brand-accent';
+import { initTalks, refreshTalks } from './talks.js?v=20261023-brand-accent';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
@@ -70,6 +70,13 @@ function setLanguage(lang) {
       const parts = dict[key] === translations.zh.brand
         ? ['香港科技大学', '前沿人工智能社团'] : ['HKUST Frontier AI Club'];
       el.replaceChildren(...parts.flatMap((part, index) => index ? [document.createElement('br'), document.createTextNode(part)] : [document.createTextNode(part)]));
+      if (dict[key] === translations.zh.brand) {
+        const line = el.lastChild;
+        const accent = document.createElement('span');
+        accent.className = 'brand-accent';
+        accent.textContent = '前沿人工智能';
+        line.replaceWith(accent, document.createTextNode('社团'));
+      }
     }
   });
   const toggle = document.getElementById('langToggle');

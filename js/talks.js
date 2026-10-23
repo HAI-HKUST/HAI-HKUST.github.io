@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-brand-type';
-import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-brand-type';
+import { translations } from './i18n.js?v=20261023-brand-accent';
+import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-brand-accent';
 import {
   drivePreviewUrl,
   driveViewUrl,
