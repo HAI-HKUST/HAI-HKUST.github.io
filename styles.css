@@ -662,12 +662,12 @@ body[data-page="talk"]{background:#fff}
  .footer-brand .brand-name small{font-size:10px}
 }
 
-/* Editorial lettering for the club identity. */
+/* Technical lettering for the club identity. */
 html[lang="zh-CN"] :is(.site-header,.footer-brand) .brand-name>span,
 html[lang="en"] :is(.site-header,.footer-brand) .brand-name small{
- font-family:"Songti SC","STSong","SimSun",serif;font-weight:600;letter-spacing:.05em;
+ font-family:"Bahnschrift","Microsoft YaHei","PingFang SC",sans-serif;font-weight:600;letter-spacing:.04em;
 }
 html[lang="en"] :is(.site-header,.footer-brand) .brand-name>span,
 html[lang="zh-CN"] :is(.site-header,.footer-brand) .brand-name small{
- font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:.025em;
+ font-family:"Cascadia Code","Consolas",monospace;font-weight:500;letter-spacing:-.025em;
 }
