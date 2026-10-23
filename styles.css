@@ -684,3 +684,25 @@ html[lang="zh-CN"] :is(.site-header,.footer-brand) .brand-name small{
 @media(max-width:1050px){
  html[lang="zh-CN"] .site-header .brand-name{position:relative;top:4px}
 }
+
+/* Keep introductory artwork proportional to the available viewport. */
+@media(min-width:1051px){
+ .hero{min-height:0}
+ .hero-inner{min-height:calc(100svh - 104px);padding:clamp(24px,4svh,48px) 0 52px;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:clamp(20px,3vw,48px)}
+ .hero-copy,.page-hero-copy{min-width:0}
+ .hero h1{font-size:clamp(34px,3.8vw,60px);line-height:1.12;margin:20px 0}
+ .hero-lead{font-size:clamp(14px,1.2vw,17px);line-height:1.75}
+ .hero-actions{margin-top:24px}
+ .hero-facts{margin-top:28px;padding-top:18px}
+ .orbit-stage{width:510px;min-height:540px;justify-self:center;zoom:clamp(.5,min(calc((100vw - 220px) / 1200px),calc(100svh / 950px)),1)}
+ .note-b{bottom:8px}
+ .scroll-cue{bottom:10px;gap:4px}
+ .scroll-cue span{height:26px;width:18px}
+ .page-hero{min-height:0;padding-top:0}
+ .page-hero-inner{min-height:clamp(360px,65svh,600px);padding:36px 0;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:28px}
+ .page-hero h1{font-size:clamp(32px,3.6vw,54px);line-height:1.15;margin:18px 0}
+ .page-hero p{font-size:16px;line-height:1.75}
+ .page-hero-actions{margin-top:24px}
+ .page-visual{min-height:0;justify-items:center}
+ .page-visual>div{zoom:clamp(.55,min(calc((100vw - 220px) / 1300px),calc(100svh / 1000px)),1)}
+}
