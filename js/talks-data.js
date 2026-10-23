@@ -22,8 +22,8 @@ export const talks = [
       abstract: '从机器人基模的语义推理与世界生成，到大规模 Ego 数据和人机联合训练，再到科研如何开始与长期计划的构建，与宋文轩一起交流机器人基础模型的研究与实践。',
       time: '10 月 22 日 · 周四 19:00–20:00（北京时间）',
       presenter: '宋文轩',
-      affiliation: '香港科技大学（广州）· 机器人与自主系统系博士二年级',
-      bio: '宋文轩，现为香港科技大学（广州）机器人与自主系统系博士二年级学生，导师是李昊晶教授，研究方向为机器人基础模型。谷歌学术引用超 1400，曾获 AAAI 最佳论文奖、IROS ScaleInfra Workshop 最佳工具论文奖、ICRA 竞赛冠军、蚂蚁 InTech 奖学金 Future、中国具身智能学术新锐 20 人等荣誉。',
+      affiliation: '香港科技大学· 机器人与自主系统系博士二年级',
+      bio: '宋文轩，现为香港科技大学机器人与自主系统系博士二年级学生，导师是李昊晶教授，研究方向为机器人基础模型。谷歌学术引用超 1400，曾获 AAAI 最佳论文奖、IROS ScaleInfra Workshop 最佳工具论文奖、ICRA 竞赛冠军、蚂蚁 InTech 奖学金 Future、中国具身智能学术新锐 20 人等荣誉。',
       topics: ['如何统一机器人基模的语义推理和世界生成', '如何有效利用大规模 Ego 数据', '人机联合训练带来怎样的 Scaling Law', '科研思路的分享与计划构建'],
       tags: ['机器人基础模型', 'Ego 数据', '人机联合训练', '科研规划']
     },
@@ -35,8 +35,8 @@ export const talks = [
       abstract: 'Join Wenxuan Song for a discussion on semantic reasoning and world generation in robot foundation models, large-scale ego-centric data, human–robot joint training, and how to begin and plan a research journey.',
       time: 'Thu, Oct 22 · 19:00–20:00 (UTC+8)',
       presenter: 'Wenxuan Song',
-      affiliation: 'HKUST(GZ) · Second-year PhD student in Robotics and Autonomous Systems',
-      bio: 'Wenxuan Song is a second-year PhD student in Robotics and Autonomous Systems at HKUST(GZ), advised by Prof. Haojing Li. His research focuses on robot foundation models. He has over 1,400 Google Scholar citations and has received an AAAI Best Paper Award, an IROS ScaleInfra Workshop Best Tool Paper Award, an ICRA competition championship, the Ant InTech Future Scholarship, and recognition among China’s 20 emerging scholars in embodied intelligence.',
+      affiliation: 'HKUST · Second-year PhD student in Robotics and Autonomous Systems',
+      bio: 'Wenxuan Song is a second-year PhD student in Robotics and Autonomous Systems at HKUST, advised by Prof. Haojing Li. His research focuses on robot foundation models. He has over 1,400 Google Scholar citations and has received an AAAI Best Paper Award, an IROS ScaleInfra Workshop Best Tool Paper Award, an ICRA competition championship, the Ant InTech Future Scholarship, and recognition among China’s 20 emerging scholars in embodied intelligence.',
       topics: ['Unifying semantic reasoning and world generation in robot foundation models', 'Making effective use of large-scale ego-centric data', 'Scaling laws in human–robot joint training', 'Sharing research approaches and building a research plan'],
       tags: ['Robot Foundation Models', 'Ego-centric Data', 'Human–Robot Joint Training', 'Research Planning']
     }

@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-hkust-brand';
-import { initTalks, refreshTalks } from './talks.js?v=20261023-hkust-brand';
+import { translations } from './i18n.js?v=20261023-unified-naming';
+import { initTalks, refreshTalks } from './talks.js?v=20261023-unified-naming';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
