@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261019-elpa-backup';
-import { initTalks, refreshTalks } from './talks.js?v=20261019-link-chevrons';
+import { translations } from './i18n.js?v=20261023-talk-card-content';
+import { initTalks, refreshTalks } from './talks.js?v=20261023-talk-card-content';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
@@ -32,6 +32,7 @@ function injectLayout() {
         <nav class="nav-links" id="navLinks" aria-label="Main navigation">
           ${navLink('index.html','navHome',page)}
           ${navLink('talks.html','navTalks',page)}
+          ${navLink('events.html','navEvents',page)}
           ${navLink('handbook.html','navHandbook',page)}
           ${navLink('collaboration.html','navCollab',page)}
           ${navLink('links.html','navLinks',page)}

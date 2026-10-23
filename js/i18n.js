@@ -1,5 +1,12 @@
 export const translations = {
   "zh": {
+    "navEvents": "近期活动",
+    "talkAbstractLabel": "报告摘要",
+    "replayShort": "回放",
+    "replayPending": "待回放",
+    "talksDirectoryTitle": "学术分享",
+    "talksDirectoryLead": "与研究者交流前沿工作、科研思路与实践经验。在这里回顾每一场分享，继续探索与讨论。",
+    "talksAbout": "了解分享形式与内容原则",
     "brand": "香港科技大学前沿人工智能社团",
     "brandSub": "HKUST(GZ) Frontier AI Club",
     "navHome": "首页",
@@ -422,9 +429,18 @@ export const translations = {
     "talkPageEyebrow": "CLUB TALK",
     "talkMaterials": "分享详情",
     "editTalkHint": "讲者、单位、简介与视频链接请在 js/talks-data.js 中填写。",
+    "openTencent": "在腾讯会议中打开录播",
+    "recordingPending": "录播正在整理中，敬请期待。",
     "openDrive": "在 Google Drive 打开录像"
   },
   "en": {
+    "navEvents": "Upcoming Events",
+    "talkAbstractLabel": "Abstract",
+    "replayShort": "Replay",
+    "replayPending": "Replay pending",
+    "talksDirectoryTitle": "Research Talks",
+    "talksDirectoryLead": "Frontier work, research approaches, and lessons from practice. Explore past conversations with researchers and revisit their ideas.",
+    "talksAbout": "About our talk formats and approach",
     "brand": "HKUST(GZ) Frontier AI Club",
     "brandSub": "香港科技大学前沿人工智能社团",
     "navHome": "Home",
@@ -847,6 +863,8 @@ export const translations = {
     "talkPageEyebrow": "CLUB TALK",
     "talkMaterials": "Talk details",
     "editTalkHint": "Edit presenter, affiliation, bio, and video URL in js/talks-data.js.",
+    "openTencent": "Open recording on Tencent Meeting",
+    "recordingPending": "The recording is being prepared. Please check back soon.",
     "openDrive": "Open recording on Google Drive"
   }
 };

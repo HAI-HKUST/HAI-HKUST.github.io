@@ -17,12 +17,11 @@
 
 - `presenter`、`affiliation`、`bio`、`title`、`abstract`、`tags` 均可直接填写
 - `video.driveUrl` 可填 Google Drive 分享链接或 file id
-- `status` 为 `past` 时出现在往期分享，为 `upcoming` 时出现在近期活动
+- `video.tencentUrl` 可填腾讯会议录制分享链接；请先核对内容，并测试站内播放与外部打开入口
+- `cover` 可填本地横版讲座海报路径；没有海报时自动使用统一主题封面。个人照片 `photo` 在详情页的讲者简介旁按原比例显示；没有照片时不留占位。
+- `status` 为 `past` 时出现在学术分享页的往期分享，为 `upcoming` 时出现在独立的近期活动页 `events.html`
 
-Talks 页面可切换播放方式：
-
-- **页面窗口**：在当前页打开独立分享页
-- **右下角视频**：只保留右下角浮窗
+Talks 卡片的封面和标题进入详情页；点击“回放”在当前页展开播放窗口，也可以通过窗口内的外部链接打开原始录播。“待回放”表示录播链接尚未补充。
 
 独立页面地址形如 `talk.html?id=affordance-learning`。
 

@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261019';
-import { talksByStatus, getTalkById } from './talks-data.js?v=20261019';
+import { translations } from './i18n.js?v=20261023-talk-card-content';
+import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-talk-card-content';
 import {
   drivePreviewUrl,
   driveViewUrl,
@@ -12,8 +12,6 @@ import {
   talkPageUrl
 } from './util.js';
 
-const PLAYER_MODE_KEY = 'hkustgz-talk-player-mode-v1';
-const PLAYER_MODES = new Set(['window', 'pip']);
 let dialogReturnFocus = null;
 let inertedElements = [];
 
@@ -42,27 +40,24 @@ function formatDate(value) {
     : date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-function getPlayerMode() {
-  const stored = localStorage.getItem(PLAYER_MODE_KEY);
-  return PLAYER_MODES.has(stored) ? stored : 'window';
-}
-
-function setPlayerMode(mode) {
-  const next = PLAYER_MODES.has(mode) ? mode : 'window';
-  localStorage.setItem(PLAYER_MODE_KEY, next);
-  document.querySelectorAll('[data-player-mode]').forEach((button) => {
-    button.classList.toggle('active', button.dataset.playerMode === next);
-    button.setAttribute('aria-pressed', button.dataset.playerMode === next ? 'true' : 'false');
-  });
-  return next;
-}
-
 function videoSource(talk) {
   return talk.video?.driveUrl || talk.video?.fileId || '';
 }
 
-function createDriveFrame(talk, title) {
-  const src = drivePreviewUrl(videoSource(talk));
+function recordingPreviewUrl(talk) {
+  return talk.video?.tencentUrl || drivePreviewUrl(videoSource(talk));
+}
+
+function recordingViewUrl(talk) {
+  return talk.video?.tencentUrl || driveViewUrl(videoSource(talk));
+}
+
+function recordingLinkLabel(talk) {
+  return talk.video?.tencentUrl ? dict().openTencent : dict().openDrive;
+}
+
+function createRecordingFrame(talk, title) {
+  const src = recordingPreviewUrl(talk);
   const frame = document.createElement('iframe');
   frame.className = 'talk-video-frame';
   frame.title = title || dict().talkVideoTitle;
@@ -100,32 +95,18 @@ function renderTalkCard(talk) {
   const title = copy(talk, 'title');
   const presenter = copy(talk, 'presenter');
   const affiliation = copy(talk, 'affiliation');
-  const abstract = copy(talk, 'abstract');
-  const bio = copy(talk, 'bio');
-  const tags = copy(talk, 'tags', []);
   return `
-    <article class="event-card featured talk-card" data-talk-id="${escapeHtml(talk.id)}">
-      <div class="event-date">
-        <strong>${escapeHtml(talk.sequence || '01')}</strong>
-        <span>${escapeHtml(copy(talk, 'slot'))}</span>
+    <article class="talk-entry">
+      <a class="talk-entry-media" href="${escapeHtml(talkPageUrl(talk.id))}" aria-label="${escapeHtml(title)}">
+        ${talk.cover ? `<img src="${escapeHtml(talk.cover)}" alt="" loading="lazy" width="640" height="360">` : `<span class="talk-entry-cover-title">${escapeHtml(title)}</span>${talk.photo ? `<img class="talk-entry-cover-portrait" src="${escapeHtml(talk.photo)}" alt="" loading="lazy" width="1080" height="1440">` : ''}`}
+      </a>
+      <div class="talk-entry-copy">
+        <h3><a href="${escapeHtml(talkPageUrl(talk.id))}"><span>${escapeHtml(title)}</span><span class="link-chevron" aria-hidden="true"></span></a></h3>
+        <p class="talk-entry-presenter">${escapeHtml(presenter)}</p>
+        <p class="talk-entry-affiliation">${escapeHtml(affiliation)}</p>
+        <div class="talk-entry-bottom"><time datetime="${escapeHtml(talk.date)}">${escapeHtml(formatDate(talk.date))}</time>
+        ${recordingPreviewUrl(talk) ? `<button type="button" class="text-link" data-open-talk="${escapeHtml(talk.id)}">${escapeHtml(dict().replayShort)}</button>` : `<span class="talk-entry-pending">${escapeHtml(dict().replayPending)}</span>`}</div>
       </div>
-      <div class="event-body">
-        <div class="event-type">${escapeHtml(copy(talk, 'type'))}</div>
-        <h3>${escapeHtml(title)}</h3>
-        <p>${escapeHtml(abstract)}</p>
-        <div class="event-meta">
-          <span class="speaker-name">${escapeHtml(presenter)}</span>
-          <span>${escapeHtml(affiliation)}</span>
-          <span>${escapeHtml(formatDate(talk.date))}</span>
-          <span>${escapeHtml(copy(talk, 'open'))}</span>
-        </div>
-        <div class="tag-list light-tags speaker-tags">${renderTags(tags)}</div>
-        ${bio ? `<div class="speaker-bio"><div class="bio-label">${escapeHtml(dict().speakerBioLabel)}</div><p>${escapeHtml(bio)}</p></div>` : ''}
-        <div class="talk-card-actions">
-          <button type="button" class="btn btn-primary" data-open-talk="${escapeHtml(talk.id)}">${escapeHtml(dict().watchReplay)}</button>
-        </div>
-      </div>
-      <div class="event-arrow link-chevron" aria-hidden="true"></div>
     </article>
   `;
 }
@@ -154,15 +135,12 @@ function ensureChrome() {
           <h2 id="talk-window-title"></h2>
         </div>
         <div class="talk-window-actions">
-          <button type="button" class="ghost-btn" data-talk-dock></button>
-          <a class="ghost-btn" data-talk-standalone target="_blank" rel="noopener noreferrer"></a>
           <a class="ghost-btn" data-talk-drive target="_blank" rel="noopener noreferrer" hidden></a>
           <button type="button" class="ghost-btn talk-close" data-close-talk aria-label="Close">×</button>
         </div>
       </header>
       <div class="talk-window-body">
         <div class="talk-window-video" data-talk-window-video></div>
-        <p class="talk-window-abstract" data-talk-window-abstract></p>
       </div>
       <span class="talk-focus-guard" tabindex="0" data-focus-guard="end"></span>
     </div>
@@ -176,20 +154,7 @@ function ensureChrome() {
       target?.focus();
     });
   });
-  const pip = document.createElement('aside');
-  pip.className = 'talk-pip';
-  pip.hidden = true;
-  pip.innerHTML = `
-    <div class="talk-pip-bar">
-      <strong class="talk-pip-title"></strong>
-      <div>
-        <button type="button" class="ghost-btn" data-pip-expand></button>
-        <button type="button" class="ghost-btn talk-close" data-pip-close aria-label="Close">×</button>
-      </div>
-    </div>
-    <div class="talk-pip-stage"></div>
-  `;
-  document.body.append(windowWrap, pip);
+  document.body.append(windowWrap);
   hardenExternalLinks(windowWrap);
 }
 
@@ -215,48 +180,28 @@ function closeTalkWindow(restoreFocus = true) {
   }
 }
 
-function closePip() {
-  const pip = document.querySelector('.talk-pip');
-  const stage = pip?.querySelector('.talk-pip-stage');
-  if (stage) stage.replaceChildren();
-  if (pip) {
-    pip.hidden = true;
-    pip.dataset.talkId = '';
-  }
-  if (pageName() === 'talk') {
-    const talk = getTalkById(new URLSearchParams(location.search).get('id'));
-    if (talk) fillTalkPage(talk);
-  }
-}
-
 function openTalkWindow(talk) {
   ensureChrome();
-  closePip();
   const wrap = document.querySelector('.talk-window');
   const stage = wrap.querySelector('[data-talk-window-video]');
-  const driveHref = driveViewUrl(videoSource(talk));
+  const driveHref = recordingViewUrl(talk);
   wrap.hidden = false;
   wrap.classList.add('is-open');
   wrap.dataset.talkId = talk.id;
   setText(wrap.querySelector('.talk-window-kicker'), `${copy(talk, 'type')} · ${copy(talk, 'presenter')}`);
   setText(wrap.querySelector('#talk-window-title'), copy(talk, 'title'));
-  setText(wrap.querySelector('[data-talk-window-abstract]'), copy(talk, 'abstract'));
-  setText(wrap.querySelector('[data-talk-dock]'), dict().dockVideo);
-  const standalone = wrap.querySelector('[data-talk-standalone]');
-  standalone.href = talkPageUrl(talk.id);
-  setText(standalone, dict().openStandalone);
   const driveLink = wrap.querySelector('[data-talk-drive]');
   if (driveHref) {
     driveLink.hidden = false;
     driveLink.href = driveHref;
-    setText(driveLink, dict().openDrive);
+    setText(driveLink, recordingLinkLabel(talk));
   } else {
     driveLink.hidden = true;
     driveLink.removeAttribute('href');
   }
-  stage.replaceChildren(createDriveFrame(talk, copy(talk, 'title')));
-  if (!drivePreviewUrl(videoSource(talk))) {
-    setText(stage, dict().upcomingEmpty);
+  stage.replaceChildren(createRecordingFrame(talk, copy(talk, 'title')));
+  if (!recordingPreviewUrl(talk)) {
+    setText(stage, dict().recordingPending);
   }
   document.body.classList.add('talk-window-open');
   inertedElements = [...document.body.children].filter((element) => element !== wrap && !element.inert);
@@ -264,42 +209,16 @@ function openTalkWindow(talk) {
   wrap.querySelector('[data-close-talk].talk-close').focus();
 }
 
-function openTalkPip(talk) {
-  ensureChrome();
-  const wasModalOpen = !document.querySelector('.talk-window').hidden;
-  closeTalkWindow(false);
-  const pip = document.querySelector('.talk-pip');
-  const stage = pip.querySelector('.talk-pip-stage');
-  pip.hidden = false;
-  pip.dataset.talkId = talk.id;
-  setText(pip.querySelector('.talk-pip-title'), copy(talk, 'presenter') || copy(talk, 'title'));
-  setText(pip.querySelector('[data-pip-expand]'), dict().expandTalk);
-  stage.replaceChildren(createDriveFrame(talk, copy(talk, 'title')));
-  const pageStage = document.querySelector('[data-talk-video]');
-  if (pageStage) pageStage.replaceChildren();
-  if (wasModalOpen) pip.querySelector('[data-pip-expand]').focus();
-}
-
-function openTalk(id, mode = getPlayerMode()) {
+function openTalk(id) {
   if (!isTalkId(id)) return;
   const talk = getTalkById(id);
-  if (!talk) return;
-  if (pageName() === 'talk') {
-    if (mode === 'pip') openTalkPip(talk);
-    else {
-      closePip();
-      fillTalkPage(talk);
-    }
-    return;
-  }
-  if (mode === 'pip') openTalkPip(talk);
-  else openTalkWindow(talk);
+  if (talk) openTalkWindow(talk);
 }
 
 function bindList(container) {
   container?.addEventListener('click', (event) => {
     const opener = event.target.closest('[data-open-talk], [data-talk-id]');
-    if (!opener || !container.contains(opener)) return;
+    if (!opener || !container.contains(opener) || event.target.closest('a')) return;
     const id = opener.dataset.openTalk || opener.dataset.talkId;
     if (id) {
       dialogReturnFocus = opener.matches('[data-open-talk]') ? opener : opener.querySelector('[data-open-talk]');
@@ -318,16 +237,23 @@ function fillTalkPage(talk) {
   setText(document.querySelector('[data-talk-presenter]'), copy(talk, 'presenter'));
   setText(document.querySelector('[data-talk-affiliation]'), copy(talk, 'affiliation'));
   setText(document.querySelector('[data-talk-bio]'), copy(talk, 'bio'));
+  const portrait = document.querySelector('[data-talk-portrait]');
+  if (portrait) {
+    portrait.hidden = !talk.photo;
+    if (talk.photo) {
+      portrait.src = talk.photo;
+      portrait.alt = copy(talk, 'presenter');
+    } else portrait.removeAttribute('src');
+  }
   setText(document.querySelector('[data-talk-date]'), formatDate(talk.date));
   setText(document.querySelector('[data-talk-open]'), copy(talk, 'open'));
   const tags = document.querySelector('[data-talk-tags]');
   if (tags) tags.innerHTML = renderTags(langPack.tags || []);
-  const stage = document.querySelector('[data-talk-video]');
-  if (stage) {
-    stage.replaceChildren(createDriveFrame(talk, title));
-    if (!drivePreviewUrl(videoSource(talk))) {
-      setText(stage, dict().upcomingEmpty);
-    }
+  const topics = copy(talk, 'topics', []);
+  const topicsSection = document.querySelector('[data-talk-topics-section]');
+  if (topicsSection) {
+    topicsSection.hidden = !topics.length;
+    topicsSection.querySelector('[data-talk-topics]').innerHTML = topics.map((topic) => `<li>${escapeHtml(topic)}</li>`).join('');
   }
 }
 
@@ -342,26 +268,6 @@ function initTalkPage() {
     return;
   }
   fillTalkPage(talk);
-  document.querySelector('[data-talk-dock-page]')?.addEventListener('click', () => {
-    if (isEmbedded()) {
-      window.parent.postMessage({ type: 'hkustgz-talk-dock', id: talk.id }, location.origin);
-      return;
-    }
-    setPlayerMode('pip');
-    openTalkPip(talk);
-    document.querySelector('[data-talk-page-video]')?.classList.add('is-docked');
-  });
-}
-
-function initMessageBridge() {
-  window.addEventListener('message', (event) => {
-    if (event.origin !== location.origin) return;
-    const data = event.data || {};
-    if (data.type === 'hkustgz-talk-dock' && isTalkId(data.id)) {
-      setPlayerMode('pip');
-      openTalk(data.id, 'pip');
-    }
-  });
 }
 
 function pageName() {
@@ -370,44 +276,17 @@ function pageName() {
 }
 
 function bindPlayerControls() {
-  document.querySelectorAll('[data-player-mode]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const next = setPlayerMode(button.dataset.playerMode);
-      const openId = document.querySelector('.talk-window:not([hidden])')?.dataset.talkId
-        || document.querySelector('.talk-pip:not([hidden])')?.dataset.talkId;
-      if (openId) openTalk(openId, next);
-    });
-  });
   document.addEventListener('click', (event) => {
     if (event.target.closest('[data-close-talk]')) closeTalkWindow();
-    if (event.target.closest('[data-talk-dock]')) {
-      const id = document.querySelector('.talk-window')?.dataset.talkId;
-      if (id) {
-        setPlayerMode('pip');
-        openTalk(id, 'pip');
-      }
-    }
-    if (event.target.closest('[data-pip-expand]')) {
-      const id = document.querySelector('.talk-pip')?.dataset.talkId;
-      if (id) {
-        setPlayerMode('window');
-        openTalk(id, 'window');
-      }
-    }
-    if (event.target.closest('[data-pip-close]')) closePip();
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeTalkWindow();
-      closePip();
-    }
+    if (event.key === 'Escape') closeTalkWindow();
   });
 }
 
 export function refreshTalks() {
   renderList(document.querySelector('[data-talks-list="past"]'), talksByStatus('past'), 'upcomingEmpty');
   renderList(document.querySelector('[data-talks-list="upcoming"]'), talksByStatus('upcoming'), 'upcomingEmpty');
-  setPlayerMode(getPlayerMode());
   if (pageName() === 'talk') {
     const talk = getTalkById(new URLSearchParams(location.search).get('id'));
     if (talk) fillTalkPage(talk);
@@ -418,19 +297,15 @@ export function initTalks() {
   const page = pageName();
   if (page === 'talk') {
     initTalkPage();
-    initMessageBridge();
     if (document.body.classList.contains('talk-embed')) return;
-    ensureChrome();
-    bindPlayerControls();
     return;
   }
-  if (page !== 'talks') return;
+  if (page !== 'talks' && page !== 'events') return;
   ensureChrome();
   refreshTalks();
   bindList(document.querySelector('[data-talks-list="past"]'));
   bindList(document.querySelector('[data-talks-list="upcoming"]'));
   bindPlayerControls();
-  initMessageBridge();
   const hashId = location.hash.replace('#talk=', '');
   if (isTalkId(hashId) && getTalkById(hashId)) openTalk(hashId);
 }

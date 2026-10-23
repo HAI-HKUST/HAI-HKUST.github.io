@@ -1,19 +1,23 @@
 /**
  * 在这里填写每一场 Talk。
  * presenter、affiliation、bio、title、abstract、tags、video.driveUrl 都可以直接改。
- * video.driveUrl 支持 Google Drive 分享链接或 file id。
+ * video.driveUrl 支持 Google Drive 分享链接或 file id；video.tencentUrl 支持腾讯会议录制分享链接。
  * status: "past" 出现在往期分享；"upcoming" 出现在近期活动。
  */
 export const talks = [
   {
     id: 'uniwam',
-    status: 'upcoming',
+    status: 'past',
     sequence: '02',
     date: '2026-10-22',
+    video: {
+      tencentUrl: 'https://meeting.tencent.com/crm/l5GBa6Yg90'
+    },
     photo: 'assets/images/song-wenxuan.jpg',
     zh: {
+      coverTitle: 'UniWAM · 人机联合训练',
       slot: '第二场分享',
-      type: '研究者分享 · 活动预告',
+      type: '研究者分享',
       title: 'UniWAM: 揭开人机联合训练 Scaling Law',
       abstract: '从机器人基模的语义推理与世界生成，到大规模 Ego 数据和人机联合训练，再到科研如何开始与长期计划的构建，与宋文轩一起交流机器人基础模型的研究与实践。',
       time: '10 月 22 日 · 周四 19:00–20:00（北京时间）',
@@ -24,8 +28,9 @@ export const talks = [
       tags: ['机器人基础模型', 'Ego 数据', '人机联合训练', '科研规划']
     },
     en: {
+      coverTitle: 'UniWAM · Human–Robot Joint Training',
       slot: 'Talk 02',
-      type: 'Research Talk · Upcoming',
+      type: 'Research Talk',
       title: 'UniWAM: Uncovering Scaling Laws for Human–Robot Joint Training',
       abstract: 'Join Wenxuan Song for a discussion on semantic reasoning and world generation in robot foundation models, large-scale ego-centric data, human–robot joint training, and how to begin and plan a research journey.',
       time: 'Thu, Oct 22 · 19:00–20:00 (UTC+8)',
@@ -54,6 +59,7 @@ export const talks = [
       affiliation: '中科院自动化所 NLPR · 清华大学准博士',
       bio: 'Sailing 是中国科学院自动化研究所（CASIA）模式识别国家重点实验室（NLPR）三年级硕士生，师从连文昭教授；同时也是罗格斯大学研究实习生、清华大学准博士生（incoming PhD）、腾讯 Robotics 具身基础模型实习生。研究方向包括机器人操作、灵巧操作与视觉-语言-动作（VLA），重点关注面向真实机器人系统的多模态感知与具身智能。',
       tags: ['视觉-语言-动作', '可供性学习', '灵巧操作', '主动感知']
+      ,topics: ['面向真实机器人操作的可供性学习', '主动感知与从 2D 到 4D 的 affordance flow', 'A4A、A2A、BridgeAct 等工作的研究问题与实践经验']
     },
     en: {
       slot: 'Opening Talk',
@@ -64,7 +70,8 @@ export const talks = [
       presenter: 'Sailing',
       affiliation: 'CASIA NLPR · Incoming PhD @ Tsinghua',
       bio: 'Sailing is a third-year Master\'s student at the National Laboratory of Pattern Recognition (NLPR), Institute of Automation, Chinese Academy of Sciences (CASIA), under the supervision of Prof. Wenzhao Lian. He is also a research intern at Rutgers University, an incoming PhD student at Tsinghua University, and a research intern at embodied foundation model in Tencent RoboticsX. His research interests include robot manipulation, dexterous manipulation, and vision-language-action (VLA), with a focus on multimodal perception and embodied intelligence for real-world robotic systems.',
-      tags: ['VLA Systems', 'Affordance Learning', 'Dexterous Manipulation', 'Active Perception']
+      tags: ['VLA Systems', 'Affordance Learning', 'Dexterous Manipulation', 'Active Perception'],
+      topics: ['Affordance learning for real-robot manipulation', 'Active perception and 2D-to-4D affordance flow', 'Research questions and practical lessons from A4A, A2A, and BridgeAct']
     }
   }
 ];
