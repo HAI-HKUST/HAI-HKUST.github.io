@@ -633,3 +633,4 @@ body[data-page="talk"]{background:#fff}
 .footer-github{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;color:rgba(255,255,255,.65)}
 .footer-github svg{width:16px;height:16px;flex:none}
 .footer-github:hover,.footer-github:focus-visible{color:var(--gold-300)}
+.footer-brand .brand-name{text-align:center}
