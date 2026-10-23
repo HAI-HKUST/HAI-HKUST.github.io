@@ -644,7 +644,8 @@ body[data-page="talk"]{background:#fff}
 .footer-brand .brand-name>span{white-space:nowrap}
 .footer-brand .brand-name>span br{display:none}
 @media(min-width:1051px){
- .site-header .brand{gap:3px}
+ .site-header .brand{gap:0}
+ .site-header .brand-mark{margin-bottom:-14px}
  .site-header .brand-name{font-size:15px;line-height:1.6;font-weight:600;letter-spacing:.025em}
  .site-header .brand-name small{margin-top:6px;letter-spacing:.025em;font-weight:400}
  html[lang="zh-CN"] .site-header .brand-name small{font-size:10.5px}
