@@ -557,3 +557,8 @@ body[data-page="talk"]{background:#fff}
  .talk-bio-panel .talk-portrait{width:88px;margin-left:16px}
 }
 
+.talk-cooperation-link{padding-bottom:24px}
+.collab-talk-formats .feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:720px){
+ .collab-talk-formats .feature-grid{grid-template-columns:1fr}
+}
