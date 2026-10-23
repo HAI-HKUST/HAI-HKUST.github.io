@@ -671,3 +671,5 @@ html[lang="en"] :is(.site-header,.footer-brand) .brand-name>span,
 html[lang="zh-CN"] :is(.site-header,.footer-brand) .brand-name small{
  font-family:"Cascadia Code","Consolas",monospace;font-weight:500;letter-spacing:-.025em;
 }
+
+.site-header .brand-name,.footer-brand .brand-name{font-style:oblique 8deg}
