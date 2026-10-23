@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-footer-copyright';
-import { initTalks, refreshTalks } from './talks.js?v=20261023-footer-copyright';
+import { translations } from './i18n.js?v=20261023-footer-github';
+import { initTalks, refreshTalks } from './talks.js?v=20261023-footer-github';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
@@ -55,7 +55,7 @@ function injectLayout() {
           </div>
           <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a><a href="https://github.com/HAI-HKUST" target="_blank" rel="noopener noreferrer" data-i18n="footerGitHub"></a></div></div>
         </div>
-        <div class="footer-bottom"><span data-i18n="copyright"></span></div>
+        <div class="footer-bottom"><span data-i18n="copyright"></span><a class="footer-github" href="https://github.com/HAI-HKUST" target="_blank" rel="noopener noreferrer">${githubIcon}<span data-i18n="footerGitHub"></span></a></div>
       </div>
     </footer>`;
 }
