@@ -633,4 +633,22 @@ body[data-page="talk"]{background:#fff}
 .footer-github{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;color:rgba(255,255,255,.65)}
 .footer-github svg{width:16px;height:16px;flex:none}
 .footer-github:hover,.footer-github:focus-visible{color:var(--gold-300)}
-.footer-brand .brand-name{text-align:center}
+/* Brand typography shared by the sidebar and footer. */
+.site-header .brand-name,.footer-brand .brand-name{font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;font-weight:600;letter-spacing:.025em}
+.site-header .brand-name small,.footer-brand .brand-name small{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-weight:400;color:rgba(255,255,255,.65)}
+.footer-brand .brand{display:flex;flex-direction:column;align-items:center;width:260px;max-width:100%;gap:20px;white-space:normal;text-align:center}
+.footer-brand .brand-mark{width:88px;height:88px}
+.footer-brand .brand-name{font-size:18px;line-height:1.7;text-align:center}
+.footer-brand .brand-name small{display:block;font-size:12px;line-height:1.6;letter-spacing:.035em;margin-top:12px;white-space:nowrap}
+.footer-brand .brand-name small br{display:none}
+@media(min-width:1051px){
+ .site-header .brand{gap:18px}
+ .site-header .brand-name{font-size:16px;line-height:1.75;font-weight:600;letter-spacing:.025em}
+ .site-header .brand-name small{margin-top:12px;letter-spacing:.025em;font-weight:400}
+ html[lang="zh-CN"] .site-header .brand-name small{font-size:10.5px}
+ html[lang="en"] .site-header .brand-name>span{font-size:13px;font-weight:500}
+}
+@media(max-width:1050px){
+ .site-header .brand-name{font-weight:600;letter-spacing:0;line-height:1.5}
+ .site-header .brand-name small{font-weight:400;letter-spacing:.01em}
+}

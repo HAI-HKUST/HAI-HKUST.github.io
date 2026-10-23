@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-footer-alignment';
-import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-footer-alignment';
+import { translations } from './i18n.js?v=20261023-brand-type';
+import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-brand-type';
 import {
   drivePreviewUrl,
   driveViewUrl,
