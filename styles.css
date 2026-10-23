@@ -661,3 +661,13 @@ body[data-page="talk"]{background:#fff}
  .footer-brand .brand-name{font-size:13px}
  .footer-brand .brand-name small{font-size:10px}
 }
+
+/* Editorial lettering for the club identity. */
+html[lang="zh-CN"] :is(.site-header,.footer-brand) .brand-name>span,
+html[lang="en"] :is(.site-header,.footer-brand) .brand-name small{
+ font-family:"Songti SC","STSong","SimSun",serif;font-weight:600;letter-spacing:.05em;
+}
+html[lang="en"] :is(.site-header,.footer-brand) .brand-name>span,
+html[lang="zh-CN"] :is(.site-header,.footer-brand) .brand-name small{
+ font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:.025em;
+}
