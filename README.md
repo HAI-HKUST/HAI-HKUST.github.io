@@ -1,6 +1,6 @@
-# HKUST(GZ) Frontier AI Club Website
+# HKUST Frontier AI Club Website
 
-香港科技大学前沿人工智能社团 / HKUST(GZ) Frontier AI Club 双语静态网站。
+香港科技大学前沿人工智能社团 / HKUST Frontier AI Club 双语静态网站。
 
 ## 推荐部署：GitHub Actions
 

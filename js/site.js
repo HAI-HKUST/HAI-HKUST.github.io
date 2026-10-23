@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-title-cover';
-import { initTalks, refreshTalks } from './talks.js?v=20261023-title-cover';
+import { translations } from './i18n.js?v=20261023-hkust-brand';
+import { initTalks, refreshTalks } from './talks.js?v=20261023-hkust-brand';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
@@ -25,7 +25,7 @@ function injectLayout() {
   if (header) header.innerHTML = `
     <header class="site-header">
       <div class="nav-wrap">
-        <a class="brand" href="index.html" aria-label="HKUST(GZ) Frontier AI Club">
+        <a class="brand" href="index.html" aria-label="HKUST Frontier AI Club">
           <img class="brand-mark" src="assets/images/club-logo.png?v=20261019-logo-v2" width="66" height="66" alt="">
           <span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span>
         </a>

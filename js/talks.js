@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-title-cover';
-import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-title-cover';
+import { translations } from './i18n.js?v=20261023-hkust-brand';
+import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-hkust-brand';
 import {
   drivePreviewUrl,
   driveViewUrl,
@@ -230,7 +230,7 @@ function bindList(container) {
 function fillTalkPage(talk) {
   const langPack = talk[currentLang()] || talk.en;
   const title = copy(talk, 'title');
-  document.title = `${title} | HKUST(GZ) Frontier AI Club`;
+  document.title = `${title} | HKUST Frontier AI Club`;
   setText(document.querySelector('[data-talk-kicker]'), copy(talk, 'type'));
   setText(document.querySelector('[data-talk-title]'), title);
   setText(document.querySelector('[data-talk-abstract]'), copy(talk, 'abstract'));
