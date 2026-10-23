@@ -682,8 +682,5 @@ html[lang="zh-CN"] :is(.site-header,.footer-brand) .brand-name small{
 .brand-accent::after{height:4px;bottom:-4px}
 
 @media(max-width:1050px){
- .site-header .brand-name{line-height:1.25}
- .site-header .brand-name>span{line-height:1.25}
- .site-header .brand-name small{line-height:1.25;margin-top:3px}
- .site-header .brand-line{vertical-align:baseline}
+ html[lang="zh-CN"] .site-header .brand-name{position:relative;top:4px}
 }
