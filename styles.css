@@ -645,9 +645,9 @@ body[data-page="talk"]{background:#fff}
 .footer-brand .brand-name>span br{display:none}
 @media(min-width:1051px){
  .site-header .brand{gap:0}
- .site-header .brand-mark{margin-bottom:-14px}
- .site-header .brand-name{font-size:15px;line-height:1.6;font-weight:600;letter-spacing:.025em}
- .site-header .brand-name small{margin-top:6px;letter-spacing:.025em;font-weight:400}
+ .site-header .brand-mark{margin-bottom:-8px}
+ .site-header .brand-name{font-size:15px;line-height:1.85;font-weight:600;letter-spacing:.025em}
+ .site-header .brand-name small{margin-top:8px;letter-spacing:.025em;font-weight:400}
  html[lang="zh-CN"] .site-header .brand-name small{font-size:10.5px}
  html[lang="en"] .site-header .brand-name>span{font-size:13px;font-weight:500}
 }
@@ -673,6 +673,10 @@ html[lang="zh-CN"] :is(.site-header,.footer-brand) .brand-name small{
  font-family:"Cascadia Code","Consolas",monospace;font-weight:500;letter-spacing:-.025em;
 }
 
-.site-header .brand-name,.footer-brand .brand-name{font-style:normal;transform:skewX(-8deg)}
+.site-header .brand-name,.footer-brand .brand-name{font-style:normal;transform:none}
+.brand-line{display:inline-block;transform:skewX(-8deg)}
+@media(min-width:1051px){
+ .site-header .brand-line{display:block}
+}
 .brand-accent{position:relative;color:var(--gold-400);white-space:nowrap}
 .brand-accent::after{height:4px;bottom:-4px}

@@ -69,13 +69,18 @@ function setLanguage(lang) {
     if ((key === 'brand' || key === 'brandSub') && el.closest('.site-header, .footer-brand')) {
       const parts = dict[key] === translations.zh.brand
         ? ['香港科技大学', '前沿人工智能社团'] : ['HKUST Frontier AI Club'];
-      el.replaceChildren(...parts.flatMap((part, index) => index ? [document.createElement('br'), document.createTextNode(part)] : [document.createTextNode(part)]));
+      el.replaceChildren(...parts.map((part) => {
+        const line = document.createElement('span');
+        line.className = 'brand-line';
+        line.textContent = part;
+        return line;
+      }));
       if (dict[key] === translations.zh.brand) {
         const line = el.lastChild;
         const accent = document.createElement('span');
         accent.className = 'brand-accent';
         accent.textContent = '前沿人工智能';
-        line.replaceWith(accent, document.createTextNode('社团'));
+        line.replaceChildren(accent, document.createTextNode('社团'));
       }
     }
   });
