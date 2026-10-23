@@ -586,3 +586,30 @@ body[data-page="talk"]{background:#fff}
 @media(max-width:560px){
  .pillar-card,.program-card,.feature-card,.audience-card,.principle,.project-card,.role-card,.link-card,.notice-card,.dark-notice{padding:16px;border-radius:14px}
 }
+
+/* Compact grids and supporting panels. */
+.pillar-card .pillar-number{position:absolute}
+.pillars,.audience-grid,.feature-grid,.principles,.project-grid{gap:16px}
+.link-grid{grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),320px));gap:16px}
+.include-grid{gap:12px;margin-top:16px}
+.include-grid div{padding:14px;border-radius:12px}
+.include-grid p{margin-top:6px;font-size:13px;line-height:1.7}
+.stat-panel{padding:28px;gap:28px;border-radius:20px}
+.stat-intro h2{font-size:28px;line-height:1.25;margin:10px 0}
+.stat-intro p{font-size:14px;line-height:1.75}
+.stat-item{padding:14px 18px;gap:6px}
+.stat-item strong{font-size:36px}
+.roadmap-step{padding:24px 16px 16px;border-radius:14px}
+.roadmap-step h3{font-size:18px}
+.template-shell article{padding:20px}
+@media(min-width:1351px){
+ .program-card:nth-child(n){grid-column:span 6}
+ .collab-talk-formats .feature-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .collab-talk-formats .topic-card{grid-column:1/-1}
+}
+@media(max-width:560px){
+ .stat-panel{padding:18px;gap:18px}
+ .stat-item{padding:12px}
+ .stat-item strong{font-size:30px}
+ .link-grid{grid-template-columns:minmax(0,1fr)}
+}
