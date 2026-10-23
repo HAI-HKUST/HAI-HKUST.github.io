@@ -492,10 +492,6 @@ body[data-page="talks"],body[data-page="events"]{background:#fff}
 .talk-entry{display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#fafbfc;transition:border-color .2s ease,box-shadow .2s ease}
 .talk-entry:hover{border-color:var(--line-strong);box-shadow:0 8px 24px rgba(8,35,83,.08)}
 .talk-entry-media{aspect-ratio:16/9;position:relative;overflow:hidden;flex-shrink:0;background:var(--navy-950);color:#fff;display:flex;align-items:center;gap:14px;padding:16px;border-bottom:1px solid var(--line)}
-.talk-entry-copy h3{font-size:16px;font-weight:650;line-height:1.45;letter-spacing:-.015em;margin:0 0 12px;overflow-wrap:anywhere}
-.talk-entry-copy h3 a{display:flex;align-items:baseline;gap:10px}
-.talk-entry-copy h3 a>span:first-child{flex:1;min-width:0}
-.talk-entry-copy h3 a:hover{color:var(--gold-700)}
 .talk-entry-copy{min-width:0;flex:1;display:flex;flex-direction:column;padding:14px}
 .talk-portrait{display:block;width:180px;max-width:100%;height:auto;margin:0 0 24px;border-radius:12px}
 .talk-portrait[hidden]{display:none}
@@ -511,7 +507,6 @@ body[data-page="talks"],body[data-page="events"]{background:#fff}
 @media(max-width:720px){
  .talks-directory{padding-top:108px}
  .talks-directory [data-talks-list="past"]{grid-template-columns:1fr;gap:20px}
- .talk-entry-copy h3{font-size:16px}
  .talk-entry-media{padding:24px}
  .talks-directory .event-section .section-heading{align-items:flex-start}
 }
@@ -527,9 +522,9 @@ body[data-page="talks"],body[data-page="events"]{background:#fff}
  .talk-entry-media{padding:18px}
 }
 
-.talk-entry-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.talk-entry-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2}
+.talk-entry-media .link-chevron{position:relative;z-index:1}
 .talk-entry-cover-title{position:relative;z-index:1;flex:1;min-width:0;font-size:17px;font-weight:650;color:#fff;line-height:1.4;overflow-wrap:anywhere}
-.talk-entry-media .talk-entry-cover-portrait{position:static;width:38%;height:100%;max-height:126px;flex:none;object-fit:contain;object-position:center}
 .talk-entry-pending{font-size:12px;color:var(--muted);padding:5px 0}
 
 /* Talk introduction */

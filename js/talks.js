@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-talk-card-content';
-import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-talk-card-content';
+import { translations } from './i18n.js?v=20261023-title-cover';
+import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-title-cover';
 import {
   drivePreviewUrl,
   driveViewUrl,
@@ -98,10 +98,10 @@ function renderTalkCard(talk) {
   return `
     <article class="talk-entry">
       <a class="talk-entry-media" href="${escapeHtml(talkPageUrl(talk.id))}" aria-label="${escapeHtml(title)}">
-        ${talk.cover ? `<img src="${escapeHtml(talk.cover)}" alt="" loading="lazy" width="640" height="360">` : `<span class="talk-entry-cover-title">${escapeHtml(title)}</span>${talk.photo ? `<img class="talk-entry-cover-portrait" src="${escapeHtml(talk.photo)}" alt="" loading="lazy" width="1080" height="1440">` : ''}`}
+        ${talk.cover ? `<img src="${escapeHtml(talk.cover)}" alt="" loading="lazy" width="640" height="360">` : ''}
+        <span class="talk-entry-cover-title">${escapeHtml(title)}</span><span class="link-chevron" aria-hidden="true"></span>
       </a>
       <div class="talk-entry-copy">
-        <h3><a href="${escapeHtml(talkPageUrl(talk.id))}"><span>${escapeHtml(title)}</span><span class="link-chevron" aria-hidden="true"></span></a></h3>
         <p class="talk-entry-presenter">${escapeHtml(presenter)}</p>
         <p class="talk-entry-affiliation">${escapeHtml(affiliation)}</p>
         <div class="talk-entry-bottom"><time datetime="${escapeHtml(talk.date)}">${escapeHtml(formatDate(talk.date))}</time>

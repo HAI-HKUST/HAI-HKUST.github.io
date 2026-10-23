@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-talk-card-content';
-import { initTalks, refreshTalks } from './talks.js?v=20261023-talk-card-content';
+import { translations } from './i18n.js?v=20261023-title-cover';
+import { initTalks, refreshTalks } from './talks.js?v=20261023-title-cover';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
