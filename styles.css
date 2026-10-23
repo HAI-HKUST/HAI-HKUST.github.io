@@ -557,3 +557,32 @@ body[data-page="talk"]{background:#fff}
 @media(max-width:720px){
  .collab-talk-formats .feature-grid{grid-template-columns:1fr}
 }
+
+/* Shared compact cards: content determines height. */
+.pillar-card,.program-card,.feature-card,.audience-card,.principle,.project-card,.role-card,.link-card,.notice-card,.dark-notice{min-width:0;min-height:0;padding:20px;border-radius:16px}
+.pillar-card h3,.program-card h3,.feature-card h3,.audience-card h3,.principle h3,.project-card h3,.role-card h3,.notice-card h3,.dark-notice h3{font-size:20px;line-height:1.4;letter-spacing:-.015em}
+.pillar-card p,.program-card p,.feature-card p,.audience-card p,.principle p,.project-card p,.role-card p,.notice-card p,.dark-notice p{font-size:14px;line-height:1.75}
+.pillar-card{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-content:start}
+.pillar-icon{grid-column:1;grid-row:1;width:42px;height:42px;border-radius:12px;margin:0}
+.pillar-icon svg{width:22px;height:22px}
+.pillar-card h3{grid-column:2;grid-row:1;align-self:center;margin:0;padding-right:20px}
+.pillar-card p,.pillar-card .text-link{grid-column:1/-1;margin:0}
+.pillar-card .pillar-number{top:16px;right:16px;font-size:10px}
+.pillar-card::after{width:100px;height:100px;right:-50px;top:-50px}
+.program-card h3,.feature-card h3,.audience-card h3,.project-card h3,.role-card h3{margin:12px 0 8px}
+.program-card p,.feature-card p,.audience-card p,.project-card p,.role-card p{min-height:0;margin:0 0 14px}
+.feature-card ul{margin-top:12px}
+.feature-card li{padding-block:5px;font-size:14px;line-height:1.7}
+.feature-card li::before{top:14px;width:5px;height:5px;box-shadow:none}
+.feature-symbol{font-size:22px;right:18px;top:16px}
+.tag-list{gap:6px;margin-top:12px}
+.principle h3{margin:10px 0 8px}
+.project-bottom{margin-top:14px;padding-top:12px}
+.link-card{gap:10px;padding:18px}
+.link-card h4{font-size:18px;line-height:1.4}
+.link-card p{font-size:13px;line-height:1.75}
+.link-url,.link-cta{font-size:12px}
+.notice-card,.dark-notice{gap:18px;margin-top:28px}
+@media(max-width:560px){
+ .pillar-card,.program-card,.feature-card,.audience-card,.principle,.project-card,.role-card,.link-card,.notice-card,.dark-notice{padding:16px;border-radius:14px}
+}
