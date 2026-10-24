@@ -55,6 +55,10 @@ body.menu-open{overflow:hidden}
 body:not(.talk-embed){min-height:100svh;display:flex;flex-direction:column}
 body:not(.talk-embed)>main{flex:1 0 auto}
 body>[data-site-footer]{flex-shrink:0}
+@media(min-width:1051px){
+ body.page-talk:not(.talk-embed)>main{display:flex;align-items:center}
+ body.page-talk:not(.talk-embed) .talk-room{padding-block:40px}
+}
 a{color:inherit;text-decoration:none}
 button{font:inherit}
 img,svg{max-width:100%}
