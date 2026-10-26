@@ -1,4 +1,4 @@
-import { translations } from './i18n.js?v=20261023-brand-accent';
+import { translations } from './i18n.js?v=20261026-resume-resource';
 import { talksByStatus, getTalkById } from './talks-data.js?v=20261023-brand-accent';
 import {
   drivePreviewUrl,

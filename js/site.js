@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261023-brand-accent';
-import { initTalks, refreshTalks } from './talks.js?v=20261023-brand-accent';
+import { translations } from './i18n.js?v=20261026-resume-resource';
+import { initTalks, refreshTalks } from './talks.js?v=20261026-resume-resource';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
