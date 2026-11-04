@@ -36,7 +36,7 @@ class SiteContracts(unittest.TestCase):
 
     def test_manifest_icon_versions_come_from_build(self):
         manifest = (ROOT / "assets/favicon/site.webmanifest").read_text(encoding="utf-8")
-        self.assertNotRegex(manifest, r"\\?v=[\\w-]+")
+        self.assertNotRegex(manifest, r"\?v=[\w-]+")
         self.assertIn("web-app-manifest-192x192.png", manifest)
 
     def test_no_manual_cache_versions(self):
