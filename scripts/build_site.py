@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 from hashlib import sha256
 from html.parser import HTMLParser
+import json
 from pathlib import Path
 import re
 import shutil
@@ -81,6 +82,9 @@ def verify(root: Path) -> None:
     for file in (root / "assets/js").glob("*.js"):
         for ref in re.findall(r"""\bfrom\s*['"]([^'"]+)['"]""", file.read_text(encoding="utf-8")):
             check_ref(ref, file, root)
+    manifest = root / "assets/favicon/site.webmanifest"
+    for icon in json.loads(manifest.read_text(encoding="utf-8")).get("icons", []):
+        check_ref(icon["src"], manifest, root)
     talks = (root / "assets/js/talks-data.js").read_text(encoding="utf-8")
     ids = re.findall(r"^\s+id:\s*'([^']+)'", talks, re.M)
     if not ids or len(ids) != len(set(ids)):
@@ -117,6 +121,11 @@ def build() -> None:
         css = file.read_text(encoding="utf-8")
         css = CSS_IMAGE.sub(lambda m: m[1] + m[2] + "?v=" + version + m[3], css)
         file.write_text(css, encoding="utf-8")
+    manifest = OUTPUT / "assets/favicon/site.webmanifest"
+    metadata = json.loads(manifest.read_text(encoding="utf-8"))
+    for icon in metadata.get("icons", []):
+        icon["src"] = urlsplit(icon["src"]).path + "?v=" + version
+    manifest.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     shutil.copy2(ROOT / ".nojekyll", OUTPUT / ".nojekyll")
     verify(OUTPUT)
     print(f"Built verified _site/ with unified asset version {version}")
