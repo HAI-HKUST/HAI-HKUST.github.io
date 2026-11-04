@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261026-resume-resource';
-import { initTalks, refreshTalks } from './talks.js?v=20261026-resume-resource';
+import { translations } from './i18n.js';
+import { initTalks, refreshTalks } from './talks.js';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
@@ -26,7 +26,7 @@ function injectLayout() {
     <header class="site-header">
       <div class="nav-wrap">
         <a class="brand" href="index.html" aria-label="HKUST Frontier AI Club">
-          <img class="brand-mark" src="assets/images/club-logo.png?v=20261019-logo-v2" width="66" height="66" alt="">
+          <img class="brand-mark" src="assets/images/club-logo.png" width="66" height="66" alt="">
           <span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span>
         </a>
         <nav class="nav-links" id="navLinks" aria-label="Main navigation">
@@ -50,7 +50,7 @@ function injectLayout() {
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/club-logo.png?v=20261019-logo-v2" width="66" height="66" alt=""><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
+            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/club-logo.png" width="66" height="66" alt=""><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
             <p data-i18n="footerIntro"></p>
           </div>
           <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a></div></div>
