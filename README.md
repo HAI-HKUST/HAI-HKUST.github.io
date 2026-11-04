@@ -2,6 +2,20 @@
 
 香港科技大学前沿人工智能社团 / HKUST Frontier AI Club 双语静态网站。
 
+## 项目结构与验证
+
+- 根目录保留七个 HTML 页面，现有地址、锚点及语言切换保持不变。
+- assets/css/、assets/js/、assets/images/、assets/favicon/ 统一管理网页资源。
+- 共享导航、页脚继续由单一 ES Module 生成；双语词条及 Talks 保留各自权威数据源。
+- scripts/build_site.py 验证完整静态资源并输出 _site/；tests/ 验证重要工程契约。
+- 不引入前端框架、npm 构建工具或额外 Python 依赖。
+
+本地检查并生成与线上相同的静态网站：
+
+    python3 -m unittest discover -s tests -p 'test_*.py' -v
+    python3 scripts/build_site.py --build
+
+直接启动静态服务器可查看源码；_site/ 为可部署产物。资源统一使用发布时生成的内容指纹版本。
 ## 推荐部署：GitHub Actions
 
 1. 将本目录中的网站文件推送到仓库根目录（默认分支 `main`）。
@@ -9,7 +23,7 @@
 3. 在 `Build and deployment → Source` 中选择 `GitHub Actions`。
 4. 打开 `Actions`，等待 `Deploy static content to Pages` 完成。
 
-发布目录只包含公开网页文件，不会上传 `.git` 或工作流配置。
+GitHub Actions 仅上传 _site/ 中的公开 HTML、assets 和 .nojekyll，不会发布开发脚本、测试、工作流或仓库元数据。
 
 ## 更新 Talk 内容
 
