@@ -60,6 +60,14 @@ function injectLayout() {
     </footer>`;
 }
 
+const languageStorageKey = 'hkustgz-frontier-ai-lang-v2';
+function savedLanguage() {
+  try { return localStorage.getItem(languageStorageKey); } catch { return null; }
+}
+function rememberLanguage(lang) {
+  try { localStorage.setItem(languageStorageKey, lang); } catch {}
+}
+
 function setLanguage(lang) {
   const dict = translations[lang] || translations.zh;
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
@@ -86,7 +94,7 @@ function setLanguage(lang) {
   });
   const toggle = document.getElementById('langToggle');
   if (toggle) toggle.textContent = lang === 'zh' ? 'EN' : '中文';
-  localStorage.setItem('hkustgz-frontier-ai-lang-v2', lang);
+  rememberLanguage(lang);
   refreshTalks();
 }
 
@@ -311,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectLayout();
   const requestedLang = new URLSearchParams(location.search).get('lang');
   let lang = (requestedLang === 'zh' || requestedLang === 'en')
-    ? requestedLang : localStorage.getItem('hkustgz-frontier-ai-lang-v2') || 'en';
+    ? requestedLang : savedLanguage() || 'en';
   setLanguage(lang);
   document.getElementById('langToggle')?.addEventListener('click', () => {
     lang = lang === 'zh' ? 'en' : 'zh';

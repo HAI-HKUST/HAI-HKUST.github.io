@@ -73,7 +73,26 @@ const server = http.createServer((req, res) => {
         await page.close();
       }
     }
-    console.log('Browser smoke passed: 7 routes × 2 widths, i18n, navigation and Talks');
+    const restricted = await browser.newContext();
+    await restricted.addInitScript(() => {
+      Object.defineProperty(window, 'localStorage', {
+        configurable: true,
+        get() { throw new DOMException('Storage blocked', 'SecurityError'); }
+      });
+    });
+    const blocked = await restricted.newPage();
+    const blockedErrors = [];
+    blocked.on('pageerror', error => blockedErrors.push(error.message));
+    await blocked.goto(origin + '/talks.html?lang=zh', {waitUntil:'load'});
+    await blocked.locator('.site-header').waitFor();
+    assert.equal(await blocked.locator('html').getAttribute('lang'), 'zh-CN');
+    assert.ok(await blocked.locator('[data-talks-list="past"] article').count() >= 2,
+      'Talks must render when browser storage is unavailable');
+    await blocked.locator('#langToggle').click();
+    assert.equal(await blocked.locator('html').getAttribute('lang'), 'en');
+    assert.deepEqual(blockedErrors, [], 'Unavailable localStorage must not break page initialization');
+    await restricted.close();
+    console.log('Browser smoke passed: 7 routes × 2 widths, i18n, navigation, Talks and restricted storage');
   } finally {
     if (browser) await browser.close();
     server.close();
