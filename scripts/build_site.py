@@ -15,7 +15,7 @@ PAGES = ("index.html", "talks.html", "events.html", "talk.html",
 ASSETS = ROOT / "assets"
 OUTPUT = ROOT / "_site"
 IMPORT = re.compile(r"""(\bfrom\s*['"])(\./[^'"]+\.js)(['"])""")
-CSS_URL = re.compile(r"""url\(\s*['"]?(?!data:)([^)'"]+)['"]?\s*\)""")
+CSS_URL = re.compile(r"""url\(\s*(?:"([^"]*)"|'([^']*)'|([^)]*))\s*\)""")
 HTML_ASSET = re.compile(r"""((?:href|src)=["'])(assets/[^"'?#]+)(["'])""")
 JS_IMAGE = re.compile(r"""(assets/images/[A-Za-z0-9_./-]+\.(?:png|jpe?g|svg))(?=['"])""")
 CSS_IMAGE = re.compile(r"""(url\(\s*['"]?)(\.\./images/[A-Za-z0-9_./-]+)(['"]?\s*\))""")
@@ -74,8 +74,10 @@ def verify(root: Path) -> None:
         if parser.translations - keys:
             raise ValueError(f"Missing translations in {name}: {sorted(parser.translations - keys)}")
     for file in (root / "assets/css").glob("*.css"):
-        for ref in CSS_URL.findall(file.read_text(encoding="utf-8")):
-            check_ref(ref.strip(), file, root)
+        for double, single, bare in CSS_URL.findall(file.read_text(encoding="utf-8")):
+            ref = (double or single or bare).strip()
+            if not ref.startswith("data:"):
+                check_ref(ref, file, root)
     for file in (root / "assets/js").glob("*.js"):
         for ref in re.findall(r"""\bfrom\s*['"]([^'"]+)['"]""", file.read_text(encoding="utf-8")):
             check_ref(ref, file, root)
