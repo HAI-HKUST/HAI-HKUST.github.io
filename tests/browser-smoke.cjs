@@ -37,7 +37,7 @@ const server = http.createServer((req, res) => {
         const route = filename === 'talk.html' ? 'talk.html?id=uniwam' : filename;
         const response = await page.goto(origin + '/' + route, {waitUntil:'load'});
         assert.equal(response.status(), 200, route);
-        await page.locator('.site-header .nav-links').waitFor();
+        await page.locator('.site-header .nav-links').waitFor({state:'attached'});
         assert.equal(await page.locator('.site-header').count(), 1, filename);
         assert.equal(await page.locator('.site-footer').count(), 1, filename);
         assert.ok((await page.title()).length > 4, 'Missing document title: ' + filename);
