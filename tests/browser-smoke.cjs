@@ -58,6 +58,16 @@ const server = http.createServer((req, res) => {
           assert.ok(await page.locator('[data-talks-list="past"] article').count() >= 2);
           assert.equal(await page.locator('.talk-window iframe').count(), 0,
             'Video iframe must be created only on user request');
+          await page.locator('[data-open-talk]').first().click();
+          assert.equal(await page.locator('[role="dialog"]').isVisible(), true,
+            'Replay dialog opens on explicit request');
+          assert.equal(await page.locator('.talk-window iframe').count(), 1,
+            'Playback loads only inside open replay dialog');
+          await page.keyboard.press('Escape');
+          assert.equal(await page.locator('[role="dialog"]').isVisible(), false,
+            'Escape closes replay dialog');
+          assert.equal(await page.locator('.talk-window iframe').count(), 0,
+            'Closing dialog removes the embedded third-party player');
         }
         assert.deepEqual(errors, [], filename + ' @ ' + width + 'px');
         await page.close();
