@@ -62,14 +62,17 @@ if (rail) {
         offset += strip.widths[index] + 20;
       });
       strip.content = offset - 20;
-      strip.width = strip.viewport.clientWidth;
-      strip.centered = strip.viewport.classList.contains('milestone-marquee');
-      strip.band = strip.centered ? Math.min(strip.width, strip.content + 44) : strip.width;
-      strip.period = Math.max(offset, strip.band + Math.max(...strip.widths) + 40);
+      const available = strip.viewport.parentElement.clientWidth;
+      const largest = Math.max(...strip.widths);
+      const desired = Math.max(strip.content + 44, largest * 2 + 44);
+      strip.width = Math.min(available, desired);
+      strip.viewport.style.width = `${strip.width}px`;
+      strip.period = offset;
+
     });
   }
   const observer = new ResizeObserver(measure);
-  strips.forEach(strip => observer.observe(strip.viewport));
+  strips.forEach(strip => observer.observe(strip.viewport.parentElement));
   measure();
   let lastTime;
   function frame(time) {
@@ -79,23 +82,11 @@ if (rail) {
       const paused = strip.viewport.matches(':hover, :focus-within') || document.body.classList.contains('member-detail-open');
       if (!paused && !document.hidden && !reduced.matches) strip.phase += elapsed * speed * strip.direction;
       const positions = strip.items.map((item, index) => {
-        const center = Math.max(0, (strip.band - strip.content) / 2);
+        const center = Math.max(0, (strip.width - strip.content) / 2);
         const x = ((center + strip.offsets[index] - strip.phase) % strip.period + strip.period) % strip.period;
-        const right = strip.band - x - strip.widths[index];
-        return { x, opacity: Math.max(0, Math.min(1, x / 22, right / 22)) };
+        const right = strip.width - x - strip.widths[index];
+        return { x, opacity: Math.max(0, Math.min(1, x / 22, right / 22, (strip.period - x) / 22)) };
       });
-      let correction = 0;
-      if (strip.centered) {
-        const visible = positions.map((position, index) => ({ ...position, width: strip.widths[index] })).filter(position => position.opacity > 0);
-        const weight = visible.reduce((sum, position) => sum + position.width * position.opacity, 0);
-        if (weight > 0) {
-          const center = visible.reduce((sum, position) => sum + (position.x + position.width / 2) * position.width * position.opacity, 0) / weight;
-          correction = strip.width / 2 - center;
-          const left = Math.min(...visible.map(position => position.x));
-          const right = Math.max(...visible.map(position => position.x + position.width));
-          correction = Math.max(-left, Math.min(strip.width - right, correction));
-        }
-      }
       strip.items.forEach((item, index) => {
         if (reduced.matches) {
           item.style.transform = '';
@@ -103,7 +94,7 @@ if (rail) {
           item.style.pointerEvents = '';
           return;
         }
-        const x = positions[index].x + correction;
+        const x = positions[index].x;
         const opacity = positions[index].opacity;
         item.style.transform = `translateX(${x}px)`;
         item.style.opacity = opacity;
