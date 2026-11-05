@@ -230,7 +230,7 @@ function bindList(container) {
 function fillTalkPage(talk) {
   const langPack = talk[currentLang()] || talk.en;
   const title = copy(talk, 'title');
-  document.title = `${title} | HKUST Frontier AI Club`;
+  document.title = `${title} | HKUST Frontier AI Community`;
   setText(document.querySelector('[data-talk-kicker]'), copy(talk, 'type'));
   setText(document.querySelector('[data-talk-title]'), title);
   setText(document.querySelector('[data-talk-abstract]'), copy(talk, 'abstract'));

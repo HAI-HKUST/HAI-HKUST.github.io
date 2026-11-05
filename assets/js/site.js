@@ -25,8 +25,8 @@ function injectLayout() {
   if (header) header.innerHTML = `
     <header class="site-header">
       <div class="nav-wrap">
-        <a class="brand" href="index.html" aria-label="HKUST Frontier AI Club">
-          <img class="brand-mark" src="assets/images/club-logo.png" width="66" height="66" alt="">
+        <a class="brand" href="index.html" aria-label="HKUST Frontier AI Community">
+          <img class="brand-mark" src="assets/images/hai-hkust.png" width="66" height="66" alt="">
           <span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span>
         </a>
         <nav class="nav-links" id="navLinks" aria-label="Main navigation">
@@ -35,6 +35,7 @@ function injectLayout() {
           ${navLink('events.html','navEvents',page)}
           ${navLink('handbook.html','navHandbook',page)}
           ${navLink('collaboration.html','navCollab',page)}
+          ${navLink('team.html','navTeam',page)}
           ${navLink('links.html','navLinks',page)}
           <a class="nav-github-mobile" href="https://github.com/HAI-HKUST" target="_blank" rel="noopener noreferrer">${githubIcon}<span data-i18n="footerGitHub"></span></a>
         </nav>
@@ -50,7 +51,7 @@ function injectLayout() {
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/club-logo.png" width="66" height="66" alt=""><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
+            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/hai-hkust.png" width="66" height="66" alt=""><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
             <p data-i18n="footerIntro"></p>
           </div>
           <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a></div></div>
@@ -76,7 +77,7 @@ function setLanguage(lang) {
     if (dict[key] !== undefined) el.textContent = dict[key];
     if ((key === 'brand' || key === 'brandSub') && el.closest('.site-header, .footer-brand')) {
       const parts = dict[key] === translations.zh.brand
-        ? ['香港科技大学', '前沿人工智能社团'] : ['HKUST Frontier AI Club'];
+        ? ['香港科技大学', '前沿人工智能社区'] : ['HKUST Frontier AI Community'];
       el.replaceChildren(...parts.map((part) => {
         const line = document.createElement('span');
         line.className = 'brand-line';
@@ -88,7 +89,7 @@ function setLanguage(lang) {
         const accent = document.createElement('span');
         accent.className = 'brand-accent';
         accent.textContent = '前沿人工智能';
-        line.replaceChildren(accent, document.createTextNode('社团'));
+        line.replaceChildren(accent, document.createTextNode('社区'));
       }
     }
   });

@@ -12,7 +12,7 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ("index.html", "talks.html", "events.html", "talk.html",
-         "handbook.html", "collaboration.html", "links.html")
+         "handbook.html", "collaboration.html", "links.html", "team.html")
 ASSETS = ROOT / "assets"
 OUTPUT = ROOT / "_site"
 IMPORT = re.compile(r"""(\bfrom\s*['"])(\./[^'"]+\.js)(['"])""")

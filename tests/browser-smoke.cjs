@@ -8,7 +8,7 @@ const { chromium } = require('playwright');
 
 const root = path.resolve(__dirname, '../_site');
 const pages = ['index.html', 'talks.html', 'events.html', 'talk.html',
-  'handbook.html', 'collaboration.html', 'links.html'];
+  'handbook.html', 'collaboration.html', 'links.html', 'team.html'];
 const mime = {'.html':'text/html', '.js':'application/javascript', '.css':'text/css',
   '.svg':'image/svg+xml', '.png':'image/png', '.jpg':'image/jpeg', '.ico':'image/x-icon',
   '.json':'application/json', '.webmanifest':'application/manifest+json'};
@@ -54,6 +54,23 @@ const server = http.createServer((req, res) => {
         if (filename === 'talk.html') {
           assert.match(await page.locator('[data-talk-title]').textContent(), /UniWAM/);
         }
+        if (filename === 'team.html') {
+          assert.equal(await page.locator('.team-lane').count(), 3);
+          assert.equal(await page.locator('.member-card').count(), 65);
+          assert.equal(await page.locator('.member-placeholder').count(), 60);
+          assert.equal(await page.locator('.milestone-member').count(), 5);
+          const lane = page.locator('.team-lane').first();
+          await page.waitForFunction(() => [...document.querySelectorAll('.team-lane:first-child .member-card')]
+            .some(card => Number(getComputedStyle(card).opacity) > .5));
+          await lane.hover();
+          const visible = await lane.locator('.member-card').evaluateAll(cards =>
+            cards.findIndex(card => Number(getComputedStyle(card).opacity) > .5));
+          assert.ok(visible >= 0, 'A member must be visible in the first row');
+          await lane.locator('.member-expand').nth(visible).click();
+          assert.equal(await page.locator('.member-dialog').evaluate(dialog => dialog.open), true);
+          await page.keyboard.press('Escape');
+          assert.equal(await page.locator('.member-dialog').evaluate(dialog => dialog.open), false);
+        }
         if (filename === 'talks.html') {
           assert.ok(await page.locator('[data-talks-list="past"] article').count() >= 2);
           assert.equal(await page.locator('.talk-window iframe').count(), 0,
@@ -92,7 +109,7 @@ const server = http.createServer((req, res) => {
     assert.equal(await blocked.locator('html').getAttribute('lang'), 'en');
     assert.deepEqual(blockedErrors, [], 'Unavailable localStorage must not break page initialization');
     await restricted.close();
-    console.log('Browser smoke passed: 7 routes × 2 widths, i18n, navigation, Talks and restricted storage');
+    console.log('Browser smoke passed: 8 routes × 2 widths, i18n, navigation, Talks, members and restricted storage');
   } finally {
     if (browser) await browser.close();
     server.close();

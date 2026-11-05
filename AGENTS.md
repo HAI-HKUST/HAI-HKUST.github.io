@@ -1,12 +1,12 @@
 # Repository Guide
 
-HAI-HKUST is a bilingual, dependency-free static club site published through GitHub Pages.
+HAI-HKUST is a bilingual, dependency-free static community site published through GitHub Pages.
 
 **Every line of code should justify its existence. Define once. Reuse everywhere.**
 
 ## Responsibility boundaries
 
-- Seven root HTML pages own their public URLs and semantic content.
+- Eight root HTML pages own their public URLs and semantic content.
 - assets/css/site.css owns the common visual system, responsive styles and page-specific presentation.
 - assets/js/site.js owns the shared header/footer, language switch and page interactions; do not duplicate layout templates.
 - assets/js/i18n.js owns the bilingual UI dictionary. Keep Chinese and English keys aligned.
