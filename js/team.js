@@ -63,7 +63,9 @@ if (rail) {
       });
       strip.content = offset - 20;
       strip.width = strip.viewport.clientWidth;
-      strip.period = Math.max(offset, strip.width + Math.max(...strip.widths) + 40);
+      strip.centered = strip.viewport.classList.contains('milestone-marquee');
+      strip.band = strip.centered ? Math.min(strip.width, strip.content + 44) : strip.width;
+      strip.period = Math.max(offset, strip.band + Math.max(...strip.widths) + 40);
     });
   }
   const observer = new ResizeObserver(measure);
@@ -76,16 +78,33 @@ if (rail) {
     strips.forEach((strip) => {
       const paused = strip.viewport.matches(':hover, :focus-within') || document.body.classList.contains('member-detail-open');
       if (!paused && !document.hidden && !reduced.matches) strip.phase += elapsed * speed * strip.direction;
+      const positions = strip.items.map((item, index) => {
+        const center = Math.max(0, (strip.band - strip.content) / 2);
+        const x = ((center + strip.offsets[index] - strip.phase) % strip.period + strip.period) % strip.period;
+        const right = strip.band - x - strip.widths[index];
+        return { x, opacity: Math.max(0, Math.min(1, x / 22, right / 22)) };
+      });
+      let correction = 0;
+      if (strip.centered) {
+        const visible = positions.map((position, index) => ({ ...position, width: strip.widths[index] })).filter(position => position.opacity > 0);
+        const weight = visible.reduce((sum, position) => sum + position.width * position.opacity, 0);
+        if (weight > 0) {
+          const center = visible.reduce((sum, position) => sum + (position.x + position.width / 2) * position.width * position.opacity, 0) / weight;
+          correction = strip.width / 2 - center;
+          const left = Math.min(...visible.map(position => position.x));
+          const right = Math.max(...visible.map(position => position.x + position.width));
+          correction = Math.max(-left, Math.min(strip.width - right, correction));
+        }
+      }
       strip.items.forEach((item, index) => {
         if (reduced.matches) {
           item.style.transform = '';
           item.style.opacity = '';
+          item.style.pointerEvents = '';
           return;
         }
-        const center = Math.max(0, (strip.width - strip.content) / 2);
-        const x = ((center + strip.offsets[index] - strip.phase) % strip.period + strip.period) % strip.period;
-        const right = strip.width - x - strip.widths[index];
-        const opacity = Math.max(0, Math.min(1, x / 22, right / 22));
+        const x = positions[index].x + correction;
+        const opacity = positions[index].opacity;
         item.style.transform = `translateX(${x}px)`;
         item.style.opacity = opacity;
         item.style.pointerEvents = opacity > .2 ? '' : 'none';
