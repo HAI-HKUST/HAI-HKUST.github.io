@@ -6,10 +6,10 @@
 .team-toolbar{margin-bottom:24px}
 .team-toolbar h2{font-size:24px;letter-spacing:-.03em;margin:0 0 6px}
 .team-toolbar p{color:var(--muted);margin:0;font-size:14px}
-.team-rail{display:grid;gap:14px;padding:4px 0 16px;width:min(100%,760px);margin-inline:auto;justify-items:center}
+.team-rail{display:grid;gap:14px;padding:4px 0 16px;width:100%;margin-inline:auto;justify-items:center}
 .team-lane{position:relative;min-width:0;width:100%;max-width:100%;height:76px;overflow:clip}
 .team-track{width:100%}
-.team-group{position:relative;height:76px}.team-group>.member-card{position:absolute;top:0;left:0;width:260px}
+.team-group{position:relative;height:76px}.team-group>.member-card{position:absolute;top:0;left:0;width:220px}
 .member-card{position:relative;flex:0 0 216px;min-width:0;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .member-expand{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:inherit;background:transparent;cursor:pointer}
 .member-expand:focus-visible{outline:3px solid var(--blue-600);outline-offset:-3px}
@@ -49,6 +49,8 @@
 .team-rail .member-card{max-width:100%;display:flex;align-items:center;gap:12px;flex-basis:260px;padding:10px 12px;background:transparent;border-color:transparent;border-radius:12px}
 .team-rail .member-portrait{flex:0 0 48px;height:48px;border-radius:50%;outline:1px solid var(--line);outline-offset:3px}
 .team-rail .member-monogram{font-size:20px}
+.member-placeholder .member-monogram{background:var(--blue-100);color:var(--muted);font-size:24px}
+.member-placeholder .member-copy h3{color:var(--muted)}
 .team-rail .member-copy{padding:0;min-height:0;min-width:0;justify-content:center}
 .team-rail .member-copy h3{font-size:14px;font-weight:600;margin-bottom:3px}
 .team-rail .member-degree{font-size:11px;margin:0}

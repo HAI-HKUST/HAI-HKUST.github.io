@@ -75,6 +75,7 @@ if (rail) {
   strips.forEach(strip => observer.observe(strip.viewport.parentElement));
   measure();
   let lastTime;
+
   function frame(time) {
     const elapsed = lastTime === undefined ? 0 : Math.min((time - lastTime) / 1000, .05);
     lastTime = time;
@@ -83,9 +84,12 @@ if (rail) {
       if (!paused && !document.hidden && !reduced.matches) strip.phase += elapsed * speed * strip.direction;
       const positions = strip.items.map((item, index) => {
         const center = Math.max(22, (strip.width - strip.content) / 2);
-        const x = ((center + strip.offsets[index] - strip.phase) % strip.period + strip.period) % strip.period;
+        const raw = center + strip.offsets[index] - strip.phase;
+        const x = ((raw % strip.period) + strip.period) % strip.period;
         const right = strip.width - x - strip.widths[index];
-        return { x, opacity: Math.max(0, Math.min(1, x / 22, right / 22, (strip.period - x) / 22)) };
+        const returning = strip.viewport.classList.contains('milestone-marquee') && raw < 0;
+        const entry = returning ? (right - 40) / 44 : right / 22;
+        return { x, opacity: Math.max(0, Math.min(1, x / 22, entry, (strip.period - x) / 22)) };
       });
       strip.items.forEach((item, index) => {
         if (reduced.matches) {
