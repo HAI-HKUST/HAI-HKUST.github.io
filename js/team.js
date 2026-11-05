@@ -40,7 +40,7 @@ if (rail) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const speed = 36;
   const strips = [...document.querySelectorAll('.team-lane')].map((viewport, index) => ({
-    viewport, group: viewport.querySelector('.team-group'), phase: index * 45, direction: index === 1 ? -1 : 1
+    viewport, group: viewport.querySelector('.team-group'), phase: 0, direction: index === 1 ? -1 : 1
   }));
   document.querySelectorAll('.milestone-roster').forEach((group) => {
     group.replaceChildren(...shuffle(group.children));
@@ -75,14 +75,16 @@ if (rail) {
   strips.forEach(strip => observer.observe(strip.viewport.parentElement));
   measure();
   let lastTime;
+  let startedAt;
   function frame(time) {
+    startedAt ??= time;
     const elapsed = lastTime === undefined ? 0 : Math.min((time - lastTime) / 1000, .05);
     lastTime = time;
     strips.forEach((strip) => {
       const paused = strip.viewport.matches(':hover, :focus-within') || document.body.classList.contains('member-detail-open');
-      if (!paused && !document.hidden && !reduced.matches) strip.phase += elapsed * speed * strip.direction;
+      if (time - startedAt >= 1200 && !paused && !document.hidden && !reduced.matches) strip.phase += elapsed * speed * strip.direction;
       const positions = strip.items.map((item, index) => {
-        const center = Math.max(0, (strip.width - strip.content) / 2);
+        const center = Math.max(22, (strip.width - strip.content) / 2);
         const x = ((center + strip.offsets[index] - strip.phase) % strip.period + strip.period) % strip.period;
         const right = strip.width - x - strip.widths[index];
         return { x, opacity: Math.max(0, Math.min(1, x / 22, right / 22, (strip.period - x) / 22)) };
