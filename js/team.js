@@ -64,7 +64,7 @@ if (rail) {
       strip.content = offset - 20;
       const available = strip.viewport.parentElement.clientWidth;
       const largest = Math.max(...strip.widths);
-      const desired = Math.max(strip.content + 44, largest * 2 + 44);
+      const desired = Math.max(strip.content + 128, largest * 2 + 44);
       strip.width = Math.min(available, desired);
       strip.viewport.style.width = `${strip.width}px`;
       strip.period = offset;
@@ -75,14 +75,12 @@ if (rail) {
   strips.forEach(strip => observer.observe(strip.viewport.parentElement));
   measure();
   let lastTime;
-  let startedAt;
   function frame(time) {
-    startedAt ??= time;
     const elapsed = lastTime === undefined ? 0 : Math.min((time - lastTime) / 1000, .05);
     lastTime = time;
     strips.forEach((strip) => {
       const paused = strip.viewport.matches(':hover, :focus-within') || document.body.classList.contains('member-detail-open');
-      if (time - startedAt >= 1200 && !paused && !document.hidden && !reduced.matches) strip.phase += elapsed * speed * strip.direction;
+      if (!paused && !document.hidden && !reduced.matches) strip.phase += elapsed * speed * strip.direction;
       const positions = strip.items.map((item, index) => {
         const center = Math.max(22, (strip.width - strip.content) / 2);
         const x = ((center + strip.offsets[index] - strip.phase) % strip.period + strip.period) % strip.period;
