@@ -38,6 +38,7 @@ if (rail) {
   }
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const speed = 36;
   const strips = [...document.querySelectorAll('.team-lane')].map((viewport, index) => ({
     viewport, group: viewport.querySelector('.team-group'), phase: index * 45, direction: index === 1 ? -1 : 1
   }));
@@ -74,24 +75,17 @@ if (rail) {
     lastTime = time;
     strips.forEach((strip) => {
       const paused = strip.viewport.matches(':hover, :focus-within') || document.body.classList.contains('member-detail-open');
-      if (!paused && !document.hidden && !reduced.matches) strip.phase += elapsed * 20 * strip.direction;
-      const fits = strip.content <= strip.width;
+      if (!paused && !document.hidden && !reduced.matches) strip.phase += elapsed * speed * strip.direction;
       strip.items.forEach((item, index) => {
         if (reduced.matches) {
           item.style.transform = '';
           item.style.opacity = '';
           return;
         }
-        let x, opacity;
-        if (fits) {
-          const travel = Math.min(24, Math.max(0, (strip.width - strip.content) / 2 - 4));
-          x = (strip.width - strip.content) / 2 + strip.offsets[index] + travel * Math.sin(strip.phase / 100);
-          opacity = 1;
-        } else {
-          x = ((strip.offsets[index] - strip.phase + strip.period) % strip.period + strip.period) % strip.period;
-          const right = strip.width - x - strip.widths[index];
-          opacity = Math.max(0, Math.min(1, x / 22, right / 22));
-        }
+        const center = Math.max(0, (strip.width - strip.content) / 2);
+        const x = ((center + strip.offsets[index] - strip.phase) % strip.period + strip.period) % strip.period;
+        const right = strip.width - x - strip.widths[index];
+        const opacity = Math.max(0, Math.min(1, x / 22, right / 22));
         item.style.transform = `translateX(${x}px)`;
         item.style.opacity = opacity;
         item.style.pointerEvents = opacity > .2 ? '' : 'none';
