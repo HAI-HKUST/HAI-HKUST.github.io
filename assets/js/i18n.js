@@ -439,7 +439,7 @@ export const translations = {
     "openStandalone": "单独打开页面",
     "talkPageEyebrow": "COMMUNITY TALK",
     "talkMaterials": "分享详情",
-    "editTalkHint": "讲者、单位、简介与视频链接请在 js/talks-data.js 中填写。",
+    "editTalkHint": "讲者、单位、简介与视频链接请在 assets/js/talks-data.js 中填写。",
     "openTencent": "在腾讯会议中打开录播",
     "recordingPending": "录播正在整理中，敬请期待。",
     "openDrive": "在 Google Drive 打开录像"
@@ -884,7 +884,7 @@ export const translations = {
     "openStandalone": "Open standalone page",
     "talkPageEyebrow": "COMMUNITY TALK",
     "talkMaterials": "Talk details",
-    "editTalkHint": "Edit presenter, affiliation, bio, and video URL in js/talks-data.js.",
+    "editTalkHint": "Edit presenter, affiliation, bio, and video URL in assets/js/talks-data.js.",
     "openTencent": "Open recording on Tencent Meeting",
     "recordingPending": "The recording is being prepared. Please check back soon.",
     "openDrive": "Open recording on Google Drive"

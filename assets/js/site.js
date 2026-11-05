@@ -1,5 +1,5 @@
-import { translations } from './i18n.js?v=20261105-community-preview';
-import { initTalks, refreshTalks } from './talks.js?v=20261026-resume-resource';
+import { translations } from './i18n.js';
+import { initTalks, refreshTalks } from './talks.js';
 import { hardenExternalLinks, isEmbedded } from './util.js';
 
 function getPage() {
@@ -26,7 +26,7 @@ function injectLayout() {
     <header class="site-header">
       <div class="nav-wrap">
         <a class="brand" href="index.html" aria-label="HKUST Frontier AI Community">
-          <img class="brand-mark" src="assets/images/hai-hkust.png?v=20261105" width="66" height="66" alt="">
+          <img class="brand-mark" src="assets/images/hai-hkust.png" width="66" height="66" alt="">
           <span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span>
         </a>
         <nav class="nav-links" id="navLinks" aria-label="Main navigation">
@@ -51,7 +51,7 @@ function injectLayout() {
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/hai-hkust.png?v=20261105" width="66" height="66" alt=""><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
+            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/hai-hkust.png" width="66" height="66" alt=""><span class="brand-name"><span data-i18n="brand"></span><small data-i18n="brandSub"></small></span></a>
             <p data-i18n="footerIntro"></p>
           </div>
           <div><div class="footer-title" data-i18n="footerExplore"></div><div class="footer-links"><a href="talks.html" data-i18n="navTalks"></a><a href="handbook.html" data-i18n="navHandbook"></a><a href="collaboration.html" data-i18n="navCollab"></a><a href="links.html" data-i18n="navLinks"></a></div></div>
@@ -59,6 +59,14 @@ function injectLayout() {
         <div class="footer-bottom"><span data-i18n="copyright"></span><a class="footer-github" href="https://github.com/HAI-HKUST" target="_blank" rel="noopener noreferrer">${githubIcon}<span data-i18n="footerGitHub"></span></a></div>
       </div>
     </footer>`;
+}
+
+const languageStorageKey = 'hkustgz-frontier-ai-lang-v2';
+function savedLanguage() {
+  try { return localStorage.getItem(languageStorageKey); } catch { return null; }
+}
+function rememberLanguage(lang) {
+  try { localStorage.setItem(languageStorageKey, lang); } catch {}
 }
 
 function setLanguage(lang) {
@@ -87,7 +95,7 @@ function setLanguage(lang) {
   });
   const toggle = document.getElementById('langToggle');
   if (toggle) toggle.textContent = lang === 'zh' ? 'EN' : '中文';
-  localStorage.setItem('hkustgz-frontier-ai-lang-v2', lang);
+  rememberLanguage(lang);
   refreshTalks();
 }
 
@@ -312,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectLayout();
   const requestedLang = new URLSearchParams(location.search).get('lang');
   let lang = (requestedLang === 'zh' || requestedLang === 'en')
-    ? requestedLang : localStorage.getItem('hkustgz-frontier-ai-lang-v2') || 'en';
+    ? requestedLang : savedLanguage() || 'en';
   setLanguage(lang);
   document.getElementById('langToggle')?.addEventListener('click', () => {
     lang = lang === 'zh' ? 'en' : 'zh';
